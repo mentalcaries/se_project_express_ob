@@ -24,3 +24,7 @@
     font-weight: 700;
     line-height: 24px; /* 120% */
 }
+.header__add-button{
+    border: 0px;
+    
+}

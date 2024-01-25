@@ -1,0 +1,26 @@
+.header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content:space-between;
+}
+
+.header__section{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    list-style-type: none;
+    column-gap: 20px;
+    padding: 0px;
+    margin: 0px;
+
+}
+.header__text{
+    background-color: white;
+    color: black;
+    font-family: "Cabinet Grotesk";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px; /* 120% */
+}

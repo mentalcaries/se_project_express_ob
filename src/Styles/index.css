@@ -1,3 +1,13 @@
+@import url('./Header.css');
+@import url('./App.css');
+@import url('./Footer.css');
+@import url('./WeatherCard.css');
+@import url('./ItemCard.css');
+@import url('./Main.css');
+@import url('./ModalWithForm.css');
+@import url('./ItemModal.css');
+
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,6 +15,17 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+body{
+  font-family: "Cabinet Grotesk";
+}
+
+@font-face {
+  font-family: "Cabinet Grotesk";
+  font-style: normal;
+  font-weight: 700;
+  src: url("../cabinet-grotesk-cufonfonts/CabinetGrotesk-Regular.otf") format("opentype")
 }
 
 code {

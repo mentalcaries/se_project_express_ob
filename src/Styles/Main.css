@@ -1,0 +1,6 @@
+ul {
+    padding: 0px;
+    margin: 0px;
+    display: grid;
+    grid-template-rows: 33.33% 33.33% 33.33%;
+}

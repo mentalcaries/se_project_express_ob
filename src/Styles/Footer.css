@@ -1,0 +1,21 @@
+.footer{
+    margin: 0px;
+    height: 40px;
+    padding: 0px;
+    padding-bottom: 24px;
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+}
+.footer li {
+    color: #000;
+    text-align: right;
+    font-family: "Cabinet Grotesk";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px;
+}

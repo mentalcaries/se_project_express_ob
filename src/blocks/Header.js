@@ -1,26 +1,35 @@
 import React, { Component } from 'react';
-import { AddClothsButton } from '../components/AddClothsButton';
-import '../Styles/Header.css'
+import profileLogo from "../images/terrence.svg"
+import companyLogo from "../images/Logo.svg"
+
 const currentDate = new Date().toLocaleString('default', { month: 'long', day: 'numeric' });
 
+
+function returnImage(link) {
+  return (
+    <img src={link} />
+  )
+}
+
 class Header extends Component{
-    
+        constructor(props) {
+        super(props);
+      }
     render(){
         return(
             <header className='header'>
                     <ul className='header__section'>
-                        <li><img src={this.props.logoImageUrl} alt="header logo"></img></li>
-                        <li className='header__text'>{currentDate}, {"location"}</li>
-
+                        <li> {returnImage(companyLogo)}</li>
+                        <li className='header__text header__text_margin_left'>{currentDate}, {"location"}</li>
                     </ul>
 
-                    <ul className='header__section'>
+                    <ul className='header__section header__section_margin_left'>
                         <li>
-                            <AddClothsButton></AddClothsButton>
+                            {this.props.button}
                         </li>
                         <li className='header__text'>Terrence tegegne</li>
-                        <li className="">
-                            <img src="src/components/terrance.svg" alt="profile logo"></img>
+                        <li className="header__profile-image">
+                            {returnImage(profileLogo)}
                         </li>
                     </ul>
             </header>

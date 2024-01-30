@@ -28,3 +28,42 @@
     border: 0px;
     
 }
+.header__text_margin_left{
+    margin-left: 30px;
+}
+
+.header__section_margin_left{
+    margin-left: 30px
+}
+
+
+@media only screen and (max-width: 677px) {
+    /* what can i do to highlight the add button  */
+}
+
+@media only screen and (max-width: 570px) {
+    .header__section{
+        column-gap: 0px;
+    }
+    .header__profile-image{
+        margin-left: 3px;
+    }
+}
+
+@media only screen and (max-width: 506px) {
+    /* return bifrocated css */
+}
+
+@media only screen and (max-width: 561px) {
+    /* dont like the look of the date and location */
+}
+
+
+
+
+
+
+
+
+
+

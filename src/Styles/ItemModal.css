@@ -1,0 +1,14 @@
+.modal__container{
+    width: 498px;
+    height: 610px;
+    background-color: #131313;
+}
+.modal__image{
+    height: 438px;
+    width: 100%;
+    background-color: aliceblue;
+}
+
+@media only screen and (max-width: 600px) {
+    
+}

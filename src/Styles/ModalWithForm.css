@@ -1,0 +1,7 @@
+.form{
+    height: 436px;
+    width: 496px;
+    background-color: violet;
+    display: flex;
+    flex-direction: column;
+}

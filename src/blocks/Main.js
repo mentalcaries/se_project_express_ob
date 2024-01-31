@@ -11,9 +11,7 @@ class Main extends Component{
                 {this.props.cardTemplate}
                 </ul> 
                 {this.props.weatherCards}
-                {this.props.form}
                 {<br></br>}
-                {this.props.modal}
 
 
             </main>

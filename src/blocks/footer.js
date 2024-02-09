@@ -6,7 +6,6 @@ class Footer extends Component {
   }
 
   render() {
-    console.log(this.props.one);
     return (
       <ul className="footer">
         <li>

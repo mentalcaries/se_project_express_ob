@@ -1,0 +1,13 @@
+.weather-modal{
+    position: relative;
+    margin-top: 15px;
+}
+.weather-card{
+    width: 100vw;
+}
+.weather-temp{
+    position: absolute;
+    left: 10px;
+    top: 33%;
+    color: white;
+}

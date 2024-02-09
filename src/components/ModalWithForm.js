@@ -6,6 +6,7 @@ class ModalWithForm extends Component {
   }
 
   render() {
+
     return (
       <div class="modal">
         <form className="form">

@@ -1,8 +1,22 @@
+.modal{
+    /* width: 100vw; */
+    height: 100vh;
+    background-color: #0000004D; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    z-index: 2
+}
+.modal_close{
+    visibility: hidden;
+}
 .modal__container{
     width: 498px;
     height: 580px;
     background-color: white;
     position: relative;
+    border-radius: 10px;
 }
 .modal__sub-container{
     margin-top: 30px;
@@ -10,7 +24,8 @@
 .modal__image{
     height: 438px;
     width: 100%;
-    background-color: transparent;
+    background-color: slateblue;
+    border-radius: 10px;
 }
 
 .modal__close-button{
@@ -27,7 +42,6 @@
     border: 0px;
 }
 .modal__text{
-    color: white;
     text-align: left;
     margin: 0px;
     margin-left: 32px;

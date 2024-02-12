@@ -8,9 +8,9 @@ class ModalWithForm extends Component {
   render() {
 
     return (
-      <div class="modal">
+      <div class={`modal ${this.props.state?"":"modal_close"}`}>
         <form className="form">
-          <button className="form__close-button"></button>
+          <button className="form__close-button" onClick={this.props.onclose}></button>
           <h3>New garment</h3>
           <label>Name</label>
           <input

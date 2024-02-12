@@ -11,11 +11,12 @@ class Main extends Component{
     render(){
         return(
             <main className=''>
-                
+                {/* {this.props.form} */}
                 <ul>
                     {this.props.cardTemplate()}
                 </ul>
                 {this.props.weatherCards}
+
                 {<br></br>}
 
 

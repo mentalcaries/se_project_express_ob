@@ -3,12 +3,36 @@ import React, { Component } from "react";
 class ModalWithForm extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      name: "", // Initialize state for input values
+      imageUrl: "",
+      temperature: "", // Initialize state for radio button value
+    };
   }
 
-  render() {
+  handleInputChange = (event) => {
+    const { name, value } = event.target;
+    this.setState({ [name]: value }); // Update state when input values change
+  };
 
+  handleRadioChange = (event) => {
+    this.setState({ temperature: event.target.value });
+  };
+
+  submit = (event) => {
+    event.preventDefault();
+    console.log(this.state.name);
+    console.log(this.state.imageUrl);
+    console.log(this.state.temperature);
+
+    // Use this.state.name, this.state.imageUrl, and this.state.temperature for form data submission
+    //add to api
+    
+  };
+
+  render() {
     return (
-      <div class={`modal ${this.props.state?"":"modal_close"}`}>
+      <div className={`modal ${this.props.state ? "" : "modal_close"}`}>
         <form className="form">
           <button className="form__close-button" onClick={this.props.onclose}></button>
           <h3>New garment</h3>
@@ -17,51 +41,59 @@ class ModalWithForm extends Component {
             className="form__text-input"
             type="text"
             placeholder="Name"
+            name="name" 
+            value={this.state.name} 
+            onChange={this.handleInputChange} 
           ></input>
           <label>Image</label>
           <input
             className="form__text-input"
             type="url"
             placeholder="Image URL"
+            name="imageUrl" 
+            value={this.state.imageUrl} 
+            onChange={this.handleInputChange} 
           ></input>
-          <label for="Hot">
+          <label>
             <input
-              className=""
               type="radio"
-              id="Hot"
-              name="options"
+              name="temperature"
               value="Hot"
-            ></input>
+              checked={this.state.temperature === "Hot"}
+              onChange={this.handleRadioChange} 
+            />
             {"Hot"}
           </label>
-          <label for="Warm">
+          <label>
             <input
-              className=""
               type="radio"
-              id="Warm"
-              name="options"
+              name="temperature"
               value="Warm"
-            ></input>
+              checked={this.state.temperature === "Warm"}
+              onChange={this.handleRadioChange} 
+            />
             {"Warm"}
           </label>
-          <label for="Cold">
+          <label>
             <input
-              className="form__radio-input_margin-bottom_32px"
               type="radio"
-              id="Cold"
-              name="options"
+              name="temperature"
               value="Cold"
-            ></input>
+              checked={this.state.temperature === "Cold"} 
+              onChange={this.handleRadioChange} 
+            />
             {"Cold"}
           </label>
           <input
             className="form__submit-button"
             type="submit"
             value="Submit"
+            onClick={this.submit}
           ></input>
         </form>
       </div>
     );
   }
 }
+
 export { ModalWithForm };

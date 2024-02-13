@@ -11,46 +11,71 @@ import { Footer } from "./blocks/Footer";
 import { ItemModal } from "./components/ItemModal";
 import * as Constants from "./Constants";
 
-// apis, useEffects, unified function that changes the state of AddModal, submit action that updates the apis and 
+// apis, useEffects, unified function that changes the state of AddModal, submit action that updates the apis and
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       ItemModal: { opened: false, itemInfo: { title: NaN, link: NaN } },
-      AddModal: {opened: false} // modal with form 
+      AddModal: { opened: false }, // modal with form
     };
   }
 
-  addModalSubmitHandler(){
-
+  fetchApiInfo() {
+    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${44.34}&lon=${10.99}&units=imperial&appid=c35029a909644511423a38bc732f0bc2`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "c35029a909644511423a38bc732f0bc2",
+        // Add other custom headers as needed
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json(); // Assuming response is JSON data
+      })
+      .then((data) => {
+        // Handle the fetched data
+        console.log(data);
+      })
+      .catch((error) => {
+        // Handle errors
+        console.error("Error fetching data:", error);
+      });
   }
-  
-  closeAddModal(){
+
+  addModalSubmitHandler() {}
+
+  closeAddModal() {
     this.setState((prevState) => ({
       ...prevState, // Preserve the existing state
       AddModal: {
         ...prevState.AddModal, // Preserve the existing AddModal state
-        opened: false // Set the opened property to true
-      }
+        opened: false, // Set the opened property to true
+      },
     }));
   }
-  
-  openAddModal(){
+
+  openAddModal() {
     this.setState((prevState) => ({
       ...prevState, // Preserve the existing state
       AddModal: {
         ...prevState.AddModal, // Preserve the existing AddModal state
-        opened: true // Set the opened property to true
-      }
+        opened: true, // Set the opened property to true
+      },
     }));
   }
 
-  changeModalInfo(){ // corrisponding to the function bellow
+  changeModalInfo() {
+    // corrisponding to the function bellow
     // update the state spicifcly itemInfo;
   }
 
-  toggleModal = (title, link) => { // better name like in openAddModal
+  toggleModal = (title, link) => {
+    // better name like in openAddModal
     console.log(this.state.ItemModal.itemInfo);
     console.log(this.state.ItemModal.itemInfo);
 
@@ -77,15 +102,16 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-         <ModalWithForm
-              title=""
-              name=""
-              className={`modal modal_type_${this.props.name}`} //last two can go in form
-              buttonText=""
-              onclose={()=>{
-                this.closeAddModal()}}
-              state={this.state.AddModal.opened}
-            ></ModalWithForm>
+        <ModalWithForm
+          title=""
+          name=""
+          className={`modal modal_type_${this.props.name}`} //last two can go in form
+          buttonText=""
+          onclose={() => {
+            this.closeAddModal();
+          }}
+          state={this.state.AddModal.opened}
+        ></ModalWithForm>
         <ItemModal
           toggleModal={this.toggleModal}
           opened={this.state.ItemModal.opened}
@@ -95,12 +121,15 @@ class App extends Component {
         ></ItemModal>
 
         <Header
-          button={<AddClothsButton
-          onclick={() =>{
-            this.openAddModal();
-            console.log(this.state.AddModal.opened);
-          }}
-          ></AddClothsButton>}
+          button={
+            <AddClothsButton
+              onclick={() => {
+                this.openAddModal();
+                console.log(this.state.AddModal.opened);
+                this.fetchApiInfo();
+              }}
+            ></AddClothsButton>
+          }
           logoImageUrl="../src/components/Logo.svg"
         ></Header>
         <Main

@@ -19,17 +19,20 @@ class App extends Component {
     this.state = {
       ItemModal: { opened: false, itemInfo: { title: NaN, link: NaN } },
       AddModal: { opened: false }, // modal with form
+      weatherData: NaN
     };
   }
 
+  componentDidMount() {
+    // Fetch weather data when the component is mounted
+    this.fetchApiInfo().then((data) =>{
+      this.state.weatherData = data;
+    })
+  }
+
   fetchApiInfo() {
-    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${44.34}&lon=${10.99}&units=imperial&appid=c35029a909644511423a38bc732f0bc2`, {
+    return fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${22.890533}&lon=${-109.916740}&units=imperial&appid=c35029a909644511423a38bc732f0bc2`, {
       method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": "c35029a909644511423a38bc732f0bc2",
-        // Add other custom headers as needed
-      },
     })
       .then((response) => {
         if (!response.ok) {
@@ -40,6 +43,7 @@ class App extends Component {
       .then((data) => {
         // Handle the fetched data
         console.log(data);
+        return (data)
       })
       .catch((error) => {
         // Handle errors
@@ -126,11 +130,14 @@ class App extends Component {
               onclick={() => {
                 this.openAddModal();
                 console.log(this.state.AddModal.opened);
-                this.fetchApiInfo();
+                
               }}
             ></AddClothsButton>
           }
           logoImageUrl="../src/components/Logo.svg"
+          location={
+            this.state.weatherData.name
+          }
         ></Header>
         <Main
           cardTemplate={() => {

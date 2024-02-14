@@ -20,7 +20,7 @@ class Header extends Component{
             <header className='header'>
                     <ul className='header__section'>
                         <li> {returnImage(companyLogo)}</li>
-                        <li className='header__text header__text_margin_left'>{currentDate}, {"location"}</li>
+                        <li className='header__text header__text_margin_left'>{currentDate}, {this.props.location}</li>
                     </ul>
 
                     <ul className='header__section header__section_margin_left'>

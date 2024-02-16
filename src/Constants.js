@@ -37,4 +37,7 @@ const defaultClothingItems = [
     }
   ]
 
-export {defaultClothingItems}
+const longitude = 22.890533;
+const latitude = -109.91674
+
+export {defaultClothingItems, longitude, latitude}

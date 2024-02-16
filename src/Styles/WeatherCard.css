@@ -1,9 +1,11 @@
 .weather-modal{
     position: relative;
     margin-top: 15px;
+    margin-right: 20px;
+    margin-left: 20px;
 }
 .weather-card{
-    width: 100vw;
+    max-width: 100%;
 }
 .weather-temp{
     position: absolute;

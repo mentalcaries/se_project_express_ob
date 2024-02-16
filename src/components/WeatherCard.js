@@ -29,7 +29,7 @@ class WeatherCard extends Component{
     render(){
         return(
             <div className='weather-modal'>
-                <div className='weather-temp'>75*</div>
+                <div className='weather-temp'>{this.props.temp}</div>
                 <img  className='weather-card' src={cardConditions.night.rainy}></img>
             </div>
         )

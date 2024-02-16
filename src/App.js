@@ -17,33 +17,35 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      ItemModal: { opened: false, itemInfo: { title: NaN, link: NaN } },
+      ItemModal: { opened: false, itemInfo: { title: NaN, link: NaN, category:NaN} },
       AddModal: { opened: false }, // modal with form
-      weatherData: NaN
+      weatherData: NaN,
+      temperature: NaN,
     };
   }
 
   componentDidMount() {
-    // Fetch weather data when the component is mounted
-    this.fetchApiInfo().then((data) =>{
-      this.state.weatherData = data;
-    })
+    this.fetchApiInfo().then((data) => {
+      this.setState({ weatherData: data });
+      this.setState({ temperature: data.main.temp });
+    });
   }
 
   fetchApiInfo() {
-    return fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${22.890533}&lon=${-109.916740}&units=imperial&appid=c35029a909644511423a38bc732f0bc2`, {
-      method: "GET",
-    })
+    return fetch(
+      `https://api.openweathermap.org/data/2.5/weather?lat=${Constants.longitude}&lon=${Constants.latitude}&units=imperial&appid=c35029a909644511423a38bc732f0bc2`,
+      {
+        method: "GET",
+      }
+    )
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
-        return response.json(); // Assuming response is JSON data
+        return response.json();
       })
       .then((data) => {
-        // Handle the fetched data
-        console.log(data);
-        return (data)
+        return data;
       })
       .catch((error) => {
         // Handle errors
@@ -73,23 +75,7 @@ class App extends Component {
     }));
   }
 
-  changeModalInfo() {
-    // corrisponding to the function bellow
-    // update the state spicifcly itemInfo;
-  }
-
-  toggleModal = (title, link) => {
-    // better name like in openAddModal
-    console.log(this.state.ItemModal.itemInfo);
-    console.log(this.state.ItemModal.itemInfo);
-
-    if (
-      this.state.ItemModal.itemInfo.title === title &&
-      this.state.ItemModal.itemInfo.link === link
-    ) {
-      console.log("Item info unchanged");
-    }
-
+  toggleModal = (title, link, category) => {
     if (!this.state.ItemModal.opened || true) {
       this.setState((prevState) => ({
         ItemModal: {
@@ -97,6 +83,7 @@ class App extends Component {
           itemInfo: {
             title: title,
             link: link,
+            category: category
           },
           opened: !prevState.ItemModal.opened,
         },
@@ -120,7 +107,7 @@ class App extends Component {
           toggleModal={this.toggleModal}
           opened={this.state.ItemModal.opened}
           itemName={this.state.ItemModal.itemInfo.title}
-          itemCategory=""
+          itemCategory={this.state.ItemModal.itemInfo.category}
           itemImageUrl={this.state.ItemModal.itemInfo.link}
         ></ItemModal>
 
@@ -130,31 +117,41 @@ class App extends Component {
               onclick={() => {
                 this.openAddModal();
                 console.log(this.state.AddModal.opened);
-                
               }}
             ></AddClothsButton>
           }
           logoImageUrl="../src/components/Logo.svg"
-          location={
-            this.state.weatherData.name
-          }
+          location={this.state.weatherData.name}
         ></Header>
         <Main
           cardTemplate={() => {
             return Constants.defaultClothingItems.map((item) => {
-              return (
-                <ItemCard
-                  cardId={item._id}
-                  name={item.name}
-                  imageUrl={item.link}
-                  handleClick={(x, y) => {
-                    this.toggleModal(x, y);
-                  }}
-                ></ItemCard>
-              );
+
+              const weatherCategory =
+              this.state.temperature >= 86
+                  ? "hot"
+                  : this.state.temperature >= 66 && this.state.temperature <= 85
+                    ? "warm"
+                    : "cold";
+              if (item.weather == weatherCategory){
+                return (
+                  <ItemCard
+                    cardId={item._id}
+                    name={item.name}
+                    weather={item.weather}
+                    imageUrl={item.link}
+                    handleClick={(x, y, z) => {
+                      this.toggleModal(x, y, z);
+                    }}
+                  ></ItemCard>
+                );
+              }
+         
             });
           }}
-          weatherCards={<WeatherCard></WeatherCard>}
+          weatherCards={
+            <WeatherCard temp={this.state.temperature}></WeatherCard>
+          }
         ></Main>
         <Footer developerName={"Developed by Obbie"} year={2024}></Footer>
       </div>

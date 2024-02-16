@@ -1,7 +1,7 @@
 .form{
     height: auto;
     width: 496px;
-    background-color: violet;
+    background-color: #f0f8ff;
     display: flex;
     flex-direction: column;
     padding: 28px;
@@ -21,6 +21,8 @@
     background-repeat: none;
     background-size: cover;
     border: none;
+    background-color:rgba(0, 0, 0, 0.30);
+    border: 1px dotted rgba(0, 0, 0, 0.30);
 }
 .form__text-input{
     margin-bottom: 24px;
@@ -30,12 +32,18 @@
     border-bottom: solid 1px;
 }
 
+.form__radio-input{
+    margin-right: 4px;
+}
+
 .form__submit-button{
     width: 124px;
     color: white;
     font-size: 16px;
     background-color: rgba(0, 0, 0, 0.30);
     border-radius: 4px;
+    border: solid 1px transparent;
+    height: 30px;
 }
 .form__radio-input_margin-bottom_32px{
     margin-bottom: 32px;

@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
 
-function listItem(){
-    
-}
-
 class Main extends Component{
     constructor(props) {
         super(props);
@@ -11,11 +7,11 @@ class Main extends Component{
     render(){
         return(
             <main className=''>
-                {/* {this.props.form} */}
-                <ul>
+                {this.props.weatherCards}
+                <ul> 
+                    {/* //we need to run a test for 30+ items and make sure the modal stays in place */}
                     {this.props.cardTemplate()}
                 </ul>
-                {this.props.weatherCards}
 
                 {<br></br>}
 

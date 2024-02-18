@@ -116,7 +116,6 @@ class App extends Component {
             <AddClothsButton
               onclick={() => {
                 this.openAddModal();
-                console.log(this.state.AddModal.opened);
               }}
             ></AddClothsButton>
           }

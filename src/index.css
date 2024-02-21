@@ -1,11 +1,11 @@
-@import url('./Header.css');
-@import url('./App.css');
-@import url('./Footer.css');
-@import url('./WeatherCard.css');
-@import url('./ItemCard.css');
-@import url('./Main.css');
-@import url('./ModalWithForm.css');
-@import url('./ItemModal.css');
+@import url('./Styles/Header.css');
+@import url('./Styles/App.css');
+@import url('./Styles/Footer.css');
+@import url('./Styles/WeatherCard.css');
+@import url('./Styles/ItemCard.css');
+@import url('./Styles/Main.css');
+@import url('./Styles/ModalWithForm.css');
+@import url('./Styles/ItemModal.css');
 
 
 body {

@@ -1,5 +1,5 @@
 import "./Styles/App.css";
-import "./Styles/index.css";
+import "./index.css";
 import React, { Component } from "react";
 import { Header } from "./blocks/Header";
 import { Main } from "./blocks/Main";
@@ -11,7 +11,6 @@ import { Footer } from "./blocks/Footer";
 import { ItemModal } from "./components/ItemModal";
 import * as Constants from "./Constants";
 
-// apis, useEffects, unified function that changes the state of AddModal, submit action that updates the apis and
 
 class App extends Component {
   constructor(props) {
@@ -31,7 +30,7 @@ class App extends Component {
     });
   }
 
-  fetchApiInfo() {
+  fetchApiInfo() { // you need to document your code
     return fetch(
       `https://api.openweathermap.org/data/2.5/weather?lat=${Constants.longitude}&lon=${Constants.latitude}&units=imperial&appid=c35029a909644511423a38bc732f0bc2`,
       {
@@ -53,9 +52,14 @@ class App extends Component {
       });
   }
 
-  addModalSubmitHandler() {}
+  addModalSubmitHandler() {
 
-  closeAddModal() {
+  }
+
+  // why cant the bottom functions be universal 
+
+  closeAddModal() { // what modal, make it universal 
+
     this.setState((prevState) => ({
       ...prevState, // Preserve the existing state
       AddModal: {
@@ -65,7 +69,7 @@ class App extends Component {
     }));
   }
 
-  openAddModal() {
+  openAddModal() { // what modal, make it universal 
     this.setState((prevState) => ({
       ...prevState, // Preserve the existing state
       AddModal: {

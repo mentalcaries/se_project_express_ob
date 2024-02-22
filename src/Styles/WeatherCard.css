@@ -13,3 +13,10 @@
     top: 33%;
     color: white;
 }
+
+@media only screen and (min-width: 900px) {
+    .weather-temp{
+        top: 37%;
+        left: 3%;
+    }
+}

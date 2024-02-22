@@ -25,7 +25,7 @@ body{
   font-family: "Cabinet Grotesk";
   font-style: normal;
   font-weight: 700;
-  src: url("../cabinet-grotesk-cufonfonts/CabinetGrotesk-Regular.otf") format("opentype")
+  src: url("./cabinet-grotesk-cufonfonts/CabinetGrotesk-Regular.otf") format("opentype")
 }
 
 code {

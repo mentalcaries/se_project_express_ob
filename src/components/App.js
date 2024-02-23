@@ -1,4 +1,4 @@
-import "../Styles/App.css";
+import "../blocks/App.css";
 import "../index.css";
 import React, { Component } from "react";
 import { Header } from "./Header";
@@ -9,7 +9,7 @@ import { WeatherCard } from "./WeatherCard";
 import { ModalWithForm } from "./ModalWithForm";
 import { Footer } from "./Footer";
 import { ItemModal } from "./ItemModal";
-import * as Constants from "../utils/Constants";
+import * as Constants from "../utils/constants";
 
 
 class App extends Component {

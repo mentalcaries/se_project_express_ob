@@ -1,15 +1,15 @@
-import "./Styles/App.css";
-import "./index.css";
+import "../Styles/App.css";
+import "../index.css";
 import React, { Component } from "react";
-import { Header } from "./blocks/Header";
-import { Main } from "./blocks/Main";
-import { ItemCard } from "./components/ItemCard";
-import { AddClothsButton } from "./components/AddClothsButton";
-import { WeatherCard } from "./components/WeatherCard";
-import { ModalWithForm } from "./components/ModalWithForm";
-import { Footer } from "./blocks/Footer";
-import { ItemModal } from "./components/ItemModal";
-import * as Constants from "./Constants";
+import { Header } from "./Header";
+import { Main } from "./Main";
+import { ItemCard } from "./ItemCard";
+import { AddClothsButton } from "./AddClothsButton";
+import { WeatherCard } from "./WeatherCard";
+import { ModalWithForm } from "./ModalWithForm";
+import { Footer } from "./Footer";
+import { ItemModal } from "./ItemModal";
+import * as Constants from "../utils/Constants";
 
 
 class App extends Component {

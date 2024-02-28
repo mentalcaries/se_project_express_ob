@@ -1,27 +1,17 @@
-import React, { Component } from "react";
+import React from "react";
 
-class ItemCard extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <li
-        className="card"
-        onClick={() => {
-          this.props.handleClick(
-            this.props.name,
-            this.props.imageUrl,
-            this.props.weather
-          );
-        }}
-      >
-        <img className="card__image" src={this.props.imageUrl}></img>
-        <h3 className="card__title"> {this.props.title}</h3>
-      </li>
-    );
-  }
-}
+const ItemCard = (props) => {
+  return (
+    <li
+      className="card"
+      onClick={() => {
+        props.handleClick(props.name, props.imageUrl, props.weather);
+      }}
+    >
+      <img className="card__image" src={props.imageUrl?props.imageUrl:"NaN"} alt={props.name?props.name:"NaN"} />
+      <h3 className="card__title">{props.title}</h3>
+    </li>
+  );
+};
 
 export { ItemCard };

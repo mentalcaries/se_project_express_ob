@@ -12,5 +12,4 @@ const Main = (props) => {
     </main>
   );
 };
-
-export { Main };
+export default Main;

@@ -14,4 +14,4 @@ const ItemCard = (props) => {
   );
 };
 
-export { ItemCard };
+export default ItemCard;

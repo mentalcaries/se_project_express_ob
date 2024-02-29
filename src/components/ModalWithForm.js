@@ -105,4 +105,4 @@ const ModalWithForm = (props) => {
   );
 };
 
-export { ModalWithForm };
+export default ModalWithForm;

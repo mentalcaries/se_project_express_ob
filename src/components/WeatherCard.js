@@ -26,4 +26,4 @@ const WeatherCard = (props) => {
   );
 };
 
-export { WeatherCard };
+export default WeatherCard;

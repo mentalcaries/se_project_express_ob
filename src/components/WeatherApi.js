@@ -18,4 +18,4 @@ const fetchApiInfo = () => {
       
   };
 
-export {fetchApiInfo} 
+  export {fetchApiInfo};

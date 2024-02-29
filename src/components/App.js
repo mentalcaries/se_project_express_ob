@@ -1,14 +1,14 @@
 import "../blocks/App.css";
 import "../index.css";
 import React, { useState, useEffect } from "react";
-import { Header } from "./Header";
-import { Main } from "./Main";
-import { ItemCard } from "./ItemCard";
-import { AddClothsButton } from "./AddClothsButton";
-import { WeatherCard } from "./WeatherCard";
-import { ModalWithForm } from "./ModalWithForm";
-import { Footer } from "./Footer";
-import { ItemModal } from "./ItemModal";
+import Header from "./Header";
+import Main from "./Main";
+import ItemCard from "./ItemCard";
+import AddClothsButton from "./AddClothsButton";
+import WeatherCard from "./WeatherCard";
+import ModalWithForm from "./ModalWithForm";
+import Footer from "./Footer";
+import ItemModal from "./ItemModal";
 import { fetchApiInfo } from "./WeatherApi";
 import * as Constants from "../utils/constants";
 

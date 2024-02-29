@@ -22,4 +22,4 @@ const ItemModal = (props) => {
   );
 };
 
-export { ItemModal };
+export default ItemModal;

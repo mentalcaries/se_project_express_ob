@@ -6,4 +6,4 @@ const AddClothsButton = (props) => {
   );
 };
 
-export { AddClothsButton };
+export default AddClothsButton;

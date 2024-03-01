@@ -9,7 +9,7 @@ import WeatherCard from "./WeatherCard";
 import ModalWithForm from "./ModalWithForm";
 import Footer from "./Footer";
 import ItemModal from "./ItemModal";
-import { fetchApiInfo } from "./WeatherApi";
+import { fetchApiInfo } from "../utils/WeatherApi";
 import * as Constants from "../utils/constants";
 
 const App = () => {
@@ -20,6 +20,13 @@ const App = () => {
   const [addModal, setAddModal] = useState({ opened: false });
   const [weatherData, setWeatherData] = useState("NaN");
   const [temperature, setTemperature] = useState("NaN");
+  // {onclick for the input elements will trigger a setUse state}
+  const [formData, setFormData] = useState({ 
+    name: "", // Initialize state for input values
+    imageUrl: "",
+    temperature: "", // Initialize state for radio button value
+  });
+
 
   useEffect(() => {
     fetchApiInfo()
@@ -32,51 +39,11 @@ const App = () => {
       });
   }, []);
 
-  const inputData = [
-    {
-      className: "form__text-input",
-      type: "text",
-      placeholder: "Name",
-      name: "name",
-    },
-    {},
-  ];
-
-  // State to manage form data
-  const [formData, setFormData] = useState({
-    name: "",
-    imageUrl: "",
-    temperature: "",
-  });
-
-  // Function to handle form submission
-  const handleSubmit = (data) => {
-    // Process the form data (e.g., submit to an API)
-    console.log("Form data submitted:", data);
-    // Close the modal
-    setAddModal(false);
-  };
-
   const closeItemModal = () => {
     setItemModal((prevItemModal) => ({
       ...prevItemModal,
       opened: false,
     }));
-  };
-
-  const input = (props) => {
-    return (
-      <label>
-        <input
-          className={props.className}
-          type={props.type}
-          placeholder={props.placeholder}
-          name={props.name}
-          value={props.value}
-          onChange={""}
-        ></input>
-      </label>
-    );
   };
 
   const closeAddModal = () => {
@@ -87,7 +54,7 @@ const App = () => {
     setAddModal((prevAddModal) => ({ ...prevAddModal, opened: true }));
   };
 
-  const toggleModal = (title, link, category) => {
+  const onClose = (title, link, category) => {
     setItemModal((prevItemModal) => ({
       ...prevItemModal,
       itemInfo: {
@@ -102,26 +69,16 @@ const App = () => {
   return (
     <div className="App">
       <ModalWithForm
-        // inputs={() => {
-        //   inputData.map((item) => {
-        //     return (
-        //       <input
-        //         className={item.className}
-        //         type={item.type}
-        //         placeholder={item.placeholder}
-        //         name={item.name}
-        //         value={item.value}
-        //         onChange={""}
-        //       ></input>
-        //     );
-        //   });
-        // }}
+      submitHandler={""}
         className={`modal modal_type_`} //last two can go in form
-        onclose={() => closeAddModal()}
+        onClose={() => closeAddModal()}
         state={addModal.opened}
+        inputElements={
+          "we are going to map through this and return a react component"
+        }
       ></ModalWithForm>
       <ItemModal
-        toggleModal={() => {
+        onClose={() => {
           closeItemModal();
         }}
         opened={itemModal.opened}
@@ -154,7 +111,7 @@ const App = () => {
                   weather={item.weather}
                   imageUrl={item.link}
                   handleClick={(x, y, z) => {
-                    toggleModal(x, y, z);
+                    onClose(x, y, z);
                   }}
                 ></ItemCard>
               );
@@ -169,3 +126,59 @@ const App = () => {
 };
 
 export default App;
+
+
+{/* <label>Name</label>
+        <input
+          className="form__text-input"
+          type="text"
+          placeholder="Name"
+          name="name"
+          value={formData.name}
+          onChange={handleInputChange}
+        ></input>
+        <label>Image</label>
+        <input
+          className="form__text-input"
+          type="url"
+          placeholder="Image URL"
+          name="imageUrl"
+          value={formData.imageUrl}
+          onChange={handleInputChange}
+        ></input>
+        <label htmlFor="hot_button">
+          <input
+          id="hot_button"
+            className="form__radio-input"
+            type="radio"
+            name="temperature"
+            value="Hot"
+            checked={formData.temperature === "Hot"}
+            onChange={handleRadioChange}
+          />
+          {"Hot"}
+        </label>
+        <label htmlFor="warm_button">
+          <input
+          id="warm_button"
+            className="form__radio-input"
+            type="radio"
+            name="temperature"
+            value="Warm"
+            checked={formData.temperature === "Warm"}
+            onChange={handleRadioChange}
+          />
+          {"Warm"}
+        </label>
+        <label htmlFor="cold_button">
+          <input
+          id="cold_button"
+            className="form__radio-input"
+            type="radio"
+            name="temperature"
+            value="Cold"
+            checked={formData.temperature === "Cold"}
+            onChange={handleRadioChange}
+          />
+          {"Cold"}
+        </label> */}

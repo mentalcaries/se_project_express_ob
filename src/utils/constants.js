@@ -1,3 +1,16 @@
+import sunnyDayImage from "../images/sunny.svg"
+import sunnyNightImage from "../images/sunnyNight.svg"
+import rainyDayImage from "../images/rainy.svg"
+import rainyNightImage from "../images/rainyNight.svg"
+import snowyDayImage from "../images/snow.svg"
+import snowyNightImage from "../images/snowyNight.svg"
+import foggyDayImage from "../images/fog.svg"
+import foggyNightImage from "../images/foggyNight.svg"
+import stormyDayImage from "../images/storm.svg"
+import stormyNightImage from "../images/stormyNight.svg"
+import cloudyDayImage from "../images/cloudy.svg"
+import cloudyNightImage from "../images/cloudyNight.svg"
+
 const defaultClothingItems = [
     {
       _id: 0,
@@ -39,5 +52,9 @@ const defaultClothingItems = [
 
 const longitude = 22.890533;
 const latitude = -109.91674
+const cardConditions = {
+  day: { sunny: sunnyDayImage, rainy: rainyDayImage, snowy: snowyDayImage, foggy: foggyDayImage, stormy: stormyDayImage, cloudy: cloudyDayImage },
+  night: { sunny: sunnyNightImage, rainy: rainyNightImage, snowy: snowyNightImage, foggy: foggyNightImage, stormy: stormyNightImage, cloudy: cloudyNightImage },
+}
 
-export {defaultClothingItems, longitude, latitude}
+export {defaultClothingItems, longitude, latitude, cardConditions}

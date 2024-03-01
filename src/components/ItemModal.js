@@ -6,7 +6,7 @@ const ItemModal = (props) => {
       <div className="modal__container">
         <button
           className={"modal__close-button"}
-          onClick={props.toggleModal}
+          onClick={props.onClose}
         ></button>
         <img
           className="modal__image"

@@ -32,6 +32,10 @@
     border-bottom: solid 1px;
 }
 
+.modal_close{
+    visibility: hidden;
+}
+
 .form__radio-input{
     margin-right: 4px;
 }

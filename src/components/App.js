@@ -12,6 +12,37 @@ import ItemModal from "./ItemModal";
 import { fetchApiInfo } from "../utils/WeatherApi";
 import * as Constants from "../utils/constants";
 
+// things we have to do, we have to set a class names and classes so that they can be univeral accross the board 
+
+const InputComponent = (
+  id,
+  labelName,
+  labelClassName,
+  inputClassName,
+  type,
+  placeholder,
+  name,
+  value,
+  onchange,
+  onclick
+) => {
+  return (
+    <label className={'labelClassName'}>
+      {'labelName'}
+      <input
+        className={'inputClassName'}
+        type={'type'}
+        placeholder={'placeholder'}
+        name={name}
+        value={'value'}
+        onChange={'onchange'}
+        onClick={'onclick'}
+        id={'id'}
+      ></input>
+    </label>
+  );
+};
+
 const App = () => {
   const [itemModal, setItemModal] = useState({
     opened: false,
@@ -21,12 +52,25 @@ const App = () => {
   const [weatherData, setWeatherData] = useState("NaN");
   const [temperature, setTemperature] = useState("NaN");
   // {onclick for the input elements will trigger a setUse state}
-  const [formData, setFormData] = useState({ 
+  const [formData, setFormData] = useState({
     name: "", // Initialize state for input values
     imageUrl: "",
     temperature: "", // Initialize state for radio button value
   });
 
+  const inputElements = [
+    {
+      id: "",
+      labelName: "Name",
+      labelClassName: "",
+      inputClassName: "form__text-input",
+      type: "text",
+      placeholder: "Name",
+      name: "Name",
+      value: "name",
+      onChange: ""
+    },
+  ];
 
   useEffect(() => {
     fetchApiInfo()
@@ -69,12 +113,30 @@ const App = () => {
   return (
     <div className="App">
       <ModalWithForm
-      submitHandler={""}
+        submitHandler={() => {
+          console.log("555");
+        }}
         className={`modal modal_type_`} //last two can go in form
         onClose={() => closeAddModal()}
         state={addModal.opened}
-        inputElements={
-          "we are going to map through this and return a react component"
+        inputElements={() =>{
+          return inputElements.map((item) =>{
+            return(
+              <InputComponent 
+              id={item.id}
+              labelName={item.labelName}
+              labelClassName={item.labelClassName}
+              inputClassName={item.inputClassName}
+              type={item.type}
+              placeholder={item.placeholder}
+              name={item.name}
+              value={item.value}
+              onChange={item.onChange}
+              onClick={item.onclick}
+              ></InputComponent>
+            )
+          })
+        }
         }
       ></ModalWithForm>
       <ItemModal
@@ -126,59 +188,3 @@ const App = () => {
 };
 
 export default App;
-
-
-{/* <label>Name</label>
-        <input
-          className="form__text-input"
-          type="text"
-          placeholder="Name"
-          name="name"
-          value={formData.name}
-          onChange={handleInputChange}
-        ></input>
-        <label>Image</label>
-        <input
-          className="form__text-input"
-          type="url"
-          placeholder="Image URL"
-          name="imageUrl"
-          value={formData.imageUrl}
-          onChange={handleInputChange}
-        ></input>
-        <label htmlFor="hot_button">
-          <input
-          id="hot_button"
-            className="form__radio-input"
-            type="radio"
-            name="temperature"
-            value="Hot"
-            checked={formData.temperature === "Hot"}
-            onChange={handleRadioChange}
-          />
-          {"Hot"}
-        </label>
-        <label htmlFor="warm_button">
-          <input
-          id="warm_button"
-            className="form__radio-input"
-            type="radio"
-            name="temperature"
-            value="Warm"
-            checked={formData.temperature === "Warm"}
-            onChange={handleRadioChange}
-          />
-          {"Warm"}
-        </label>
-        <label htmlFor="cold_button">
-          <input
-          id="cold_button"
-            className="form__radio-input"
-            type="radio"
-            name="temperature"
-            value="Cold"
-            checked={formData.temperature === "Cold"}
-            onChange={handleRadioChange}
-          />
-          {"Cold"}
-        </label> */}

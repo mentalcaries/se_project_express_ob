@@ -14,7 +14,7 @@ const ModalWithForm = (props) => {
       }
     }></button>
 
-      {/* {props.inputElements} */}
+      {props.inputElements()}
 
       <button onClick={
         (event) =>{

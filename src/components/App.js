@@ -15,29 +15,20 @@ import * as Constants from "../utils/constants";
 // things we have to do, we have to set a class names and classes so that they can be univeral accross the board 
 
 const InputComponent = (
-  id,
-  labelName,
-  labelClassName,
-  inputClassName,
-  type,
-  placeholder,
-  name,
-  value,
-  onchange,
-  onclick
+  props
 ) => {
   return (
-    <label className={'labelClassName'}>
-      {'labelName'}
+    <label className={props.labelClassName}>
+      {props.labelName}
       <input
-        className={'inputClassName'}
-        type={'type'}
-        placeholder={'placeholder'}
-        name={name}
-        value={'value'}
-        onChange={'onchange'}
-        onClick={'onclick'}
-        id={'id'}
+        className={props.inputClassName}
+        type={props.type}
+        placeholder={props.placeholder}
+        name={props.name}
+        value={props.value}
+        onChange={props.onchange}
+        onClick={props.onclick}
+        id={props.id}
       ></input>
     </label>
   );
@@ -60,16 +51,61 @@ const App = () => {
 
   const inputElements = [
     {
-      id: "",
+      id: "name-input",
       labelName: "Name",
-      labelClassName: "",
+      labelClassName: "form__text-label",
       inputClassName: "form__text-input",
       type: "text",
       placeholder: "Name",
       name: "Name",
-      value: "name",
-      onChange: ""
+      onChange: () => {},
+      onClick: () => {}
     },
+    {
+      id: "url-input",
+      labelName: "Image",
+      labelClassName: "form__text-label",
+      inputClassName: "form__text-input",
+      type: "url",
+      placeholder: "Image URL",
+      name: "imageUrl",
+      onChange: () =>{},
+      onClick: () =>{}
+    },
+    {
+      id: "hot button",
+      labelName: "Hot",
+      labelClassName: "form__radio-label",
+      inputClassName: "form__radio-input",
+      type: "radio",
+      name: "temperature",
+      value: "Hot",
+      onChange: () =>{},
+      onClick: () =>{}
+    },
+    {
+      id: "warm-button",
+      labelName: "warm",
+      labelClassName: "form__radio-label",
+      inputClassName: "form__radio-input",
+      type: "radio",
+      name: "temperature",
+      value: "Warm",
+      onChange: () =>{},
+      onClick: () =>{}
+    },
+    {
+      id: "cold-button",
+      labelName: "cold",
+      labelClassName: "form__radio-label",
+      inputClassName: "form__radio-input",
+      type: "radio",
+      name: "temperature",
+      value: "Cold",
+      onChange: () =>{},
+      onClick: () =>{}
+    }
+
   ];
 
   useEffect(() => {
@@ -123,6 +159,7 @@ const App = () => {
           return inputElements.map((item) =>{
             return(
               <InputComponent 
+              key={item.id}
               id={item.id}
               labelName={item.labelName}
               labelClassName={item.labelClassName}
@@ -132,7 +169,7 @@ const App = () => {
               name={item.name}
               value={item.value}
               onChange={item.onChange}
-              onClick={item.onclick}
+              onClick={item.onClick}
               ></InputComponent>
             )
           })

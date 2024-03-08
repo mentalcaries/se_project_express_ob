@@ -14,6 +14,8 @@ const ModalWithForm = (props) => {
       }
     }></button>
 
+    <h3>New Garment</h3>
+
       {props.inputElements()}
 
       <button onClick={
@@ -21,7 +23,7 @@ const ModalWithForm = (props) => {
           event.preventDefault();
           props.onClose();
         }
-      } className="form__submit-button" type="submit"> Submit </button>
+      } className="form__submit-button" type="submit"> Add Garment </button>
     </form>
 
     </div>

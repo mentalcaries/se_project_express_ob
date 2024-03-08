@@ -1,13 +1,23 @@
 .form{
     height: auto;
     width: 496px;
-    background-color: #f0f8ff;
+    background-color: #fff;
     display: flex;
     flex-direction: column;
     padding: 28px;
     position: relative;
     align-items: flex-start;
     border-radius: 20px;
+}
+
+.form__text-label{
+    width: 100%;
+    text-align: left;
+}
+
+.form__radio-label{
+    display: flex;
+    flex-direction: row-reverse;
 }
 
 .form__close-button{

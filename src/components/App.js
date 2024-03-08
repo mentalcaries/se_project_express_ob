@@ -12,7 +12,6 @@ import ItemModal from "./ItemModal";
 import { fetchApiInfo } from "../utils/WeatherApi";
 import * as Constants from "../utils/constants";
 
-// things we have to do, we have to set a class names and classes so that they can be univeral accross the board 
 
 const InputComponent = (
   props
@@ -42,12 +41,7 @@ const App = () => {
   const [addModal, setAddModal] = useState({ opened: false });
   const [weatherData, setWeatherData] = useState("NaN");
   const [temperature, setTemperature] = useState("NaN");
-  // {onclick for the input elements will trigger a setUse state}
-  const [formData, setFormData] = useState({
-    name: "", // Initialize state for input values
-    imageUrl: "",
-    temperature: "", // Initialize state for radio button value
-  });
+
 
   const inputElements = [
     {

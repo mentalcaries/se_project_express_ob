@@ -149,6 +149,8 @@ const App = () => {
         className={`modal modal_type_`} //last two can go in form
         onClose={() => closeAddModal()}
         state={addModal.opened}
+        title={"New Garement"}
+        buttonText={"Add Garement"}
         inputElements={() =>{
           return inputElements.map((item) =>{
             return(

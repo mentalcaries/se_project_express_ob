@@ -6,7 +6,7 @@ const ModalWithForm = (props) => {
 
   return (
     <div className={`modal ${props.state?"":"modal_close"}`}>
-    <form className="form" onSubmit={props.submitHandler}> {/*the submit handler handles everything inside of App*/ }
+    <form className="form" onSubmit={props.submitHandler}>
     <button className="form__close-button" onClick={
       (event) => {
         event.preventDefault();
@@ -14,7 +14,7 @@ const ModalWithForm = (props) => {
       }
     }></button>
 
-    <h3>New Garment</h3>
+    <h3>{props.title}</h3>
 
       {props.inputElements()}
 
@@ -23,7 +23,7 @@ const ModalWithForm = (props) => {
           event.preventDefault();
           props.onClose();
         }
-      } className="form__submit-button" type="submit"> Add Garment </button>
+      } className="form__submit-button" type="submit"> {props.buttonText} </button>
     </form>
 
     </div>

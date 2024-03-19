@@ -8,7 +8,11 @@ const ItemCard = (props) => {
         props.handleClick(props.name, props.imageUrl, props.weather);
       }}
     >
-      <img className="card__image" src={props.imageUrl?props.imageUrl:"NaN"} alt={props.name?props.name:"NaN"} />
+      <img
+        className="card__image"
+        src={props.imageUrl ? props.imageUrl : "NaN"}
+        alt={props.name ? props.name : "NaN"}
+      />
       <h3 className="card__title">{props.name}</h3>
     </li>
   );

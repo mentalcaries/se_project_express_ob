@@ -1,33 +1,25 @@
-
-import React, { useEffect } from "react";
-
+import React from "react";
 
 const ModalWithForm = (props) => {
-
   return (
-    <div className={`modal ${props.state?"":"modal_close"}`}>
-    <form className="form" onSubmit={props.submitHandler}>
-    <button className="form__close-button" onClick={
-      (event) => {
-        event.preventDefault();
-        props.onClose()
-      }
-    }></button>
+    <div className={`modal ${props.state ? "" : "modal_close"}`}>
+      <form className="form" onSubmit={props.submitHandler}>
+        <button
+          className="form__close-button"
+          onClick={() => {
+            props.onClose();
+          }}
+        ></button>
 
-    <h3>{props.title}</h3>
+        <h3>{props.title}</h3>
 
-      {props.inputElements()}
+        {props.inputs()}
 
-      <button onClick={
-        (event) =>{
-          event.preventDefault();
-          props.onClose();
-        }
-      } className="form__submit-button" type="submit"> {props.buttonText} </button>
-    </form>
-
+        <button className="form__submit-button" type="submit">
+          {props.buttonText}
+        </button>
+      </form>
     </div>
-    
   );
 };
 

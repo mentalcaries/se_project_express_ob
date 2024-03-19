@@ -1,6 +1,6 @@
 import React from "react";
 
-const Footer = (props) => { 
+const Footer = (props) => {
   return (
     <footer>
       <ul className="footer">

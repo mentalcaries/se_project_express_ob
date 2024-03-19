@@ -3,19 +3,14 @@ import "../index.css";
 import React, { useState, useEffect } from "react";
 import Header from "./Header";
 import Main from "./Main";
-import ItemCard from "./ItemCard";
 import AddClothsButton from "./AddClothsButton";
 import WeatherCard from "./WeatherCard";
 import ModalWithForm from "./ModalWithForm";
 import Footer from "./Footer";
 import ItemModal from "./ItemModal";
 import { fetchApiInfo } from "../utils/WeatherApi";
-import * as Constants from "../utils/constants";
 
-
-const InputComponent = (
-  props
-) => {
+const InputComponent = (props) => {
   return (
     <label className={props.labelClassName}>
       {props.labelName}
@@ -42,7 +37,6 @@ const App = () => {
   const [weatherData, setWeatherData] = useState("NaN");
   const [temperature, setTemperature] = useState("NaN");
 
-
   const inputElements = [
     {
       id: "name-input",
@@ -53,7 +47,7 @@ const App = () => {
       placeholder: "Name",
       name: "Name",
       onChange: () => {},
-      onClick: () => {}
+      onClick: () => {},
     },
     {
       id: "url-input",
@@ -63,8 +57,8 @@ const App = () => {
       type: "url",
       placeholder: "Image URL",
       name: "imageUrl",
-      onChange: () =>{},
-      onClick: () =>{}
+      onChange: () => {},
+      onClick: () => {},
     },
     {
       id: "hot button",
@@ -74,8 +68,8 @@ const App = () => {
       type: "radio",
       name: "temperature",
       value: "Hot",
-      onChange: () =>{},
-      onClick: () =>{}
+      onChange: () => {},
+      onClick: () => {},
     },
     {
       id: "warm-button",
@@ -85,8 +79,8 @@ const App = () => {
       type: "radio",
       name: "temperature",
       value: "Warm",
-      onChange: () =>{},
-      onClick: () =>{}
+      onChange: () => {},
+      onClick: () => {},
     },
     {
       id: "cold-button",
@@ -96,10 +90,9 @@ const App = () => {
       type: "radio",
       name: "temperature",
       value: "Cold",
-      onChange: () =>{},
-      onClick: () =>{}
-    }
-
+      onChange: () => {},
+      onClick: () => {},
+    },
   ];
 
   useEffect(() => {
@@ -144,33 +137,32 @@ const App = () => {
     <div className="App">
       <ModalWithForm
         submitHandler={() => {
-          console.log("555");
+          closeAddModal();
         }}
         className={`modal modal_type_`} //last two can go in form
         onClose={() => closeAddModal()}
         state={addModal.opened}
         title={"New Garement"}
         buttonText={"Add Garement"}
-        inputElements={() =>{
-          return inputElements.map((item) =>{
-            return(
-              <InputComponent 
-              key={item.id}
-              id={item.id}
-              labelName={item.labelName}
-              labelClassName={item.labelClassName}
-              inputClassName={item.inputClassName}
-              type={item.type}
-              placeholder={item.placeholder}
-              name={item.name}
-              value={item.value}
-              onChange={item.onChange}
-              onClick={item.onClick}
+        inputs={() => {
+          return inputElements.map((item) => {
+            return (
+              <InputComponent
+                key={item.id}
+                labelName={item.labelName}
+                id={item.id}
+                labelClassName={item.labelClassName}
+                inputClassName={item.inputClassName}
+                type={item.type}
+                placeholder={item.placeholder}
+                name={item.name}
+                value={item.value}
+                onChange={item.onChange}
+                onClick={item.onClick}
               ></InputComponent>
-            )
-          })
-        }
-        }
+            );
+          });
+        }}
       ></ModalWithForm>
       <ItemModal
         onClose={() => {
@@ -190,29 +182,8 @@ const App = () => {
         location={weatherData.name}
       ></Header>
       <Main
-        cardTemplate={() => {
-          return Constants.defaultClothingItems.map((item) => {
-            const weatherCategory =
-              temperature >= 86
-                ? "hot"
-                : temperature >= 66 && temperature <= 85
-                  ? "warm"
-                  : "cold";
-            if (item.weather === weatherCategory) {
-              return (
-                <ItemCard
-                  key={item._id}
-                  name={item.name}
-                  weather={item.weather}
-                  imageUrl={item.link}
-                  handleClick={(x, y, z) => {
-                    onClose(x, y, z);
-                  }}
-                ></ItemCard>
-              );
-            }
-          });
-        }}
+        temperature={temperature}
+        onClose={onClose}
         weatherCards={<WeatherCard temp={temperature}></WeatherCard>}
       ></Main>
       <Footer developerName={"Developed by Obbie"} year={2024}></Footer>

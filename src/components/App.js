@@ -121,7 +121,7 @@ const App = () => {
     setAddModal((prevAddModal) => ({ ...prevAddModal, opened: true }));
   };
 
-  const onClose = (title, link, category) => {
+  const onClose = (title, link, category) => { // better name
     setItemModal((prevItemModal) => ({
       ...prevItemModal,
       itemInfo: {
@@ -139,12 +139,12 @@ const App = () => {
         submitHandler={() => {
           closeAddModal();
         }}
-        className={`modal modal_type_`} //last two can go in form
+        className={`modal modal_type_`}
         onClose={() => closeAddModal()}
         state={addModal.opened}
         title={"New Garement"}
         buttonText={"Add Garement"}
-        inputs={() => {
+        children={() => {
           return inputElements.map((item) => {
             return (
               <InputComponent

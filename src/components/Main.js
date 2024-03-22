@@ -19,7 +19,7 @@ const Main = (props) => {
             weather={item.weather}
             imageUrl={item.link}
             handleClick={(x, y, z) => {
-              props.onClose(x, y, z);
+              props.toggleItemModal(x, y, z);
             }}
           ></ItemCard>
         );

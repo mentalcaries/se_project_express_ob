@@ -7,15 +7,15 @@ const currentDate = new Date().toLocaleString("default", {
   day: "numeric",
 });
 
-const returnImage = (link) => {
-  return <img src={link} alt="company logo" />;
+const returnImage = (link, alt, id="", className="") => {
+  return <img src={link} alt={alt} id={id} className={className} />;
 };
 
 const Header = (props) => {
   return (
     <header className="header">
       <div className="header__section">
-        <h3 className="header__text">{returnImage(companyLogo)}</h3>
+        <h3 className="header__text">{returnImage(companyLogo, "Company Logo")}</h3>
         <p className="header__text header__text_margin_left">
           {currentDate}, {props.location}
         </p>
@@ -24,11 +24,8 @@ const Header = (props) => {
       <div className="header__section header__section_margin_left">
         {props.button}
         <h3 className="header__text">Terrence tegegne</h3>
-        <img
-          className="header__profile-image"
-          alt="profile logo"
-          src={profileLogo}
-        ></img>
+
+        {returnImage(profileLogo, "Profile Logo", "", "header__profile-image")}
       </div>
     </header>
   );

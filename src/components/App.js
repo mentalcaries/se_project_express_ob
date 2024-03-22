@@ -121,7 +121,7 @@ const App = () => {
     setAddModal((prevAddModal) => ({ ...prevAddModal, opened: true }));
   };
 
-  const onClose = (title, link, category) => { // better name
+  const toggleItemModal = (title, link, category) => { // better name
     setItemModal((prevItemModal) => ({
       ...prevItemModal,
       itemInfo: {
@@ -183,7 +183,7 @@ const App = () => {
       ></Header>
       <Main
         temperature={temperature}
-        onClose={onClose}
+        toggleItemModal={toggleItemModal}
         weatherCards={<WeatherCard temp={temperature}></WeatherCard>}
       ></Main>
       <Footer developerName={"Developed by Obbie"} year={2024}></Footer>

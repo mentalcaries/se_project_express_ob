@@ -10,6 +10,8 @@ import Footer from "./Footer";
 import ItemModal from "./ItemModal";
 import { fetchApiInfo } from "../utils/WeatherApi";
 
+//this proiject need to be compatible with all devices including desktop and mobile {hint => (display:grid)}
+
 const InputComponent = (props) => {
   return (
     <label className={props.labelClassName}>

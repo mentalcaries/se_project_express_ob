@@ -1,14 +1,18 @@
-import React from "react";
+import React, { useContext } from 'react';
 import * as Constants from "../utils/constants";
 import ItemCard from "./ItemCard";
+import {CurrentTemperatureUnitContext} from "../context/CurrentTemperatureUnitContext"
+
 
 const Main = (props) => {
+  const {CurrentTemperatureUnit, handleTemperatureUnitChange, temperature} = useContext(CurrentTemperatureUnitContext);
+
   const cards = () => {
     return Constants.defaultClothingItems.map((item) => {
       const weatherCategory =
-        props.temperature >= 86
+        temperature >= 86
           ? "hot"
-          : props.temperature >= 66 && props.temperature <= 85
+          : temperature >= 66 && temperature <= 85
             ? "warm"
             : "cold";
       if (item.weather === weatherCategory) {
@@ -29,7 +33,10 @@ const Main = (props) => {
   return (
     <main className="">
       {props.weatherCards}
+      <div>
+      <div className="profile__section"></div>
       <ul>{cards()}</ul>
+      </div>
       <br />
     </main>
   );

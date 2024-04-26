@@ -20,3 +20,17 @@
         left: 3%;
     }
 }
+
+@media screen and (max-width: 698px) {
+    .weather-temp{
+        top: 28%;
+        left: 3%;
+    }
+}
+
+@media screen and (maxc-width: 597px) {
+    .weather-temp{
+        top: -10;
+        margin: auto;
+    }
+}

@@ -6,7 +6,7 @@ const ItemCard = (props) => {
       className="card"
       onClick={() => {
         props.handleClick(props.name, props.imageUrl, props.weather);
-      }}
+      }} 
     >
       <img
         className="card__image"

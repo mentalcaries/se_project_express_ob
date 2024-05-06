@@ -1,19 +1,18 @@
 .modal{
-    /* width: 100vw; */
     height: 100vh;
     background-color: #0000004D; 
     display: flex;
     justify-content: center;
     align-items: center;
     position: absolute;
-    z-index: 2
+    z-index: 3
 }
 .modal_close{
     visibility: hidden;
 }
 .modal__container{
-    width: 498px;
-    height: 580px;
+    max-width: 498px;
+    max-height: 580px;
     background-color: white;
     position: relative;
     border-radius: 10px;

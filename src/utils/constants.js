@@ -50,6 +50,64 @@ const defaultClothingItems = [
   },
 ];
 
+const inputElements = [
+  {
+    id: "name-input",
+    labelName: "Name",
+    labelClassName: "form__text-label",
+    inputClassName: "form__text-input",
+    type: "text",
+    placeholder: "Name",
+    name: "name",
+    onChange: () => { },
+    onClick: () => { },
+  },
+  {
+    id: "url-input",
+    labelName: "Image",
+    labelClassName: "form__text-label",
+    inputClassName: "form__text-input",
+    type: "url",
+    placeholder: "Image URL",
+    name: "imageUrl",
+    onChange: () => { },
+    onClick: () => { },
+  },
+  {
+    id: "hot button",
+    labelName: "Hot",
+    labelClassName: "form__radio-label",
+    inputClassName: "form__radio-input",
+    type: "radio",
+    name: "temperature",
+    value: "Hot",
+    onChange: () => { },
+    onClick: () => { },
+  },
+  {
+    id: "warm-button",
+    labelName: "Warm",
+    labelClassName: "form__radio-label",
+    inputClassName: "form__radio-input",
+    type: "radio",
+    name: "temperature",
+    value: "Warm",
+    onChange: () => { },
+    onClick: () => { },
+  },
+  {
+    id: "cold-button",
+    labelName: "Cold",
+    labelClassName: "form__radio-label",
+    inputClassName: "form__radio-input",
+    type: "radio",
+    name: "temperature",
+    value: "Cold",
+    onChange: () => { },
+    onClick: () => { },
+  },
+];
+
 const longitude = 22.890533;
 const latitude = -109.91674;
 const cardConditions = {
@@ -71,4 +129,4 @@ const cardConditions = {
   },
 };
 
-export { defaultClothingItems, longitude, latitude, cardConditions };
+export { defaultClothingItems, longitude, latitude, cardConditions, inputElements};

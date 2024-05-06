@@ -4,10 +4,10 @@ const Footer = (props) => {
   return (
     <footer>
       <ul className="footer">
-        <li>
+        <li className="footer__item">
           <h3>{props.developerName}</h3>
         </li>
-        <li>
+        <li className="footer__item">
           <h3>{new Date().getFullYear()}</h3>
         </li>
       </ul>

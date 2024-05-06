@@ -1,8 +1,15 @@
 import React from "react";
 
 const ItemModal = (props) => {
+
+  const handleModalClick = (event) => {
+    if (event.target === event.currentTarget) {
+      props.onClose();
+    }
+  };
+  
   return (
-    <div className={`modal ${props.opened ? "" : "modal_close"}`}>
+    <div className={`modal ${props.opened ? "" : "modal_close"}`} onClick={handleModalClick}>
       <div className="modal__container">
         <button
           className={"modal__close-button"}

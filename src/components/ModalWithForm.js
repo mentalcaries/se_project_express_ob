@@ -1,9 +1,16 @@
 import React from "react";
 
 const ModalWithForm = (props) => {
+
+  const handleModalClick = (event) => {
+    if (event.target === event.currentTarget) {
+      props.onClose();
+    }
+  };
+
   return (
-    <div className={`modal ${props.state ? "" : "modal_close"}`}>
-      <form className="form" onSubmit={(event) =>{
+    <div className={`modal ${props.state ? "" : "modal_close"}`} onClick={handleModalClick}>
+      <form className="form" onSubmit={(event) => {
         props.submitHandler()
         event.preventDefault();
       }}>

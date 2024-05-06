@@ -67,14 +67,6 @@
     }
 }
 
-@media only screen and (max-width: 506px) {
-    /* return bifrocated css */
-}
-
-@media only screen and (max-width: 561px) {
-    /* dont like the look of the date and location */
-}
-
 .header__switch {
     display: inline-block;
     cursor: pointer;

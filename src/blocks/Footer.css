@@ -12,7 +12,7 @@
     align-items: center;
 
 }
-.footer li {
+.footer__item{
     color: #000;
     text-align: right;
     font-family: "Cabinet Grotesk";

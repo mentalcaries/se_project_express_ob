@@ -12,9 +12,12 @@ import ItemModal from "./ItemModal";
 import { fetchApiInfo } from "../utils/WeatherApi";
 import { CurrentTemperatureUnitContext } from "../context/CurrentTemperatureUnitContext"
 import { Profile } from "./Profile"
+import AddItemModal from "./AddItemModal";
+import * as Constants from "../utils/constants";
 
-// this proiject need to be compatible with all devices including desktop and mobile {hint => (display:grid && keyframes)}
-// header class names and class names in main and overall refactoring in edited files. 
+// item modal needs to scale better when screen size changes  
+// the cards needs to be apart of the state vars amnd use effect goes of the state variabless and then an api request 
+// weather card needs to scale apropriatly
 
 const InputComponent = (props) => {
   return (
@@ -43,65 +46,8 @@ const App = () => {
   const [weatherData, setWeatherData] = useState("NaN");
   const [temperature, setTemperature] = useState("NaN");
   const [CurrentTemperatureUnit, setCurrentTempUnit] = useState("F");
+  const [cards, setClothingItems] = useState(Constants.defaultClothingItems);
 
-
-  const inputElements = [
-    {
-      id: "name-input",
-      labelName: "Name",
-      labelClassName: "form__text-label",
-      inputClassName: "form__text-input",
-      type: "text",
-      placeholder: "Name",
-      name: "Name",
-      onChange: () => { },
-      onClick: () => { },
-    },
-    {
-      id: "url-input",
-      labelName: "Image",
-      labelClassName: "form__text-label",
-      inputClassName: "form__text-input",
-      type: "url",
-      placeholder: "Image URL",
-      name: "imageUrl",
-      onChange: () => { },
-      onClick: () => { },
-    },
-    {
-      id: "hot button",
-      labelName: "Hot",
-      labelClassName: "form__radio-label",
-      inputClassName: "form__radio-input",
-      type: "radio",
-      name: "temperature",
-      value: "Hot",
-      onChange: () => { },
-      onClick: () => { },
-    },
-    {
-      id: "warm-button",
-      labelName: "warm",
-      labelClassName: "form__radio-label",
-      inputClassName: "form__radio-input",
-      type: "radio",
-      name: "temperature",
-      value: "Warm",
-      onChange: () => { },
-      onClick: () => { },
-    },
-    {
-      id: "cold-button",
-      labelName: "cold",
-      labelClassName: "form__radio-label",
-      inputClassName: "form__radio-input",
-      type: "radio",
-      name: "temperature",
-      value: "Cold",
-      onChange: () => { },
-      onClick: () => { },
-    },
-  ];
 
   useEffect(() => {
     fetchApiInfo()
@@ -124,10 +70,6 @@ const App = () => {
   const closeAddModal = () => {
     setAddModal((prevAddModal) => ({ ...prevAddModal, opened: false }));
   };
-
-  // const ToggleSwitch = () =>{
-  //   const {CurrentTemperatureUnit, handleToggleSwitchChange } = useContext(CurrentTemperatureUnitContext)
-  // }
 
   const handleTemperatureUnitChange = () => {
     CurrentTemperatureUnit === "F"
@@ -155,7 +97,7 @@ const App = () => {
   return (
     <div className="App">
       <CurrentTemperatureUnitContext.Provider value={{ CurrentTemperatureUnit, handleTemperatureUnitChange, temperature }}>
-        <ModalWithForm
+        {/* <ModalWithForm
           submitHandler={() => {
             closeAddModal();
           }}
@@ -164,7 +106,7 @@ const App = () => {
           state={addModal.opened}
           title={"New Garement"}
           buttonText={"Add Garement"}
-          children={() => {
+          children={(name, image, weather) => {
             return inputElements.map((item) => {
               return (
                 <InputComponent
@@ -183,7 +125,18 @@ const App = () => {
               );
             });
           }}
-        ></ModalWithForm>
+        ></ModalWithForm> */}
+
+        <AddItemModal
+          state={addModal.opened}
+          onClose={() => { closeAddModal() }}
+          className={`modal modal_type_`}
+          submitHandler={NaN}
+          title={"New Garement"}
+          buttonText={"Add Garement"}
+        >
+        </AddItemModal>
+
         <ItemModal
           onClose={() => {
             closeItemModal();
@@ -201,16 +154,23 @@ const App = () => {
           logoImageUrl="../src/components/Logo.svg"
           location={weatherData.name}
         ></Header>
-        {/* <Route path="/">
-          <Main
-            toggleItemModal={toggleItemModal}
-            weatherCards={<WeatherCard></WeatherCard>}
-          ></Main>
-        </Route>
-        <Route path="/profile">
-          <Profile />
-        </Route> */}
-        <Profile></Profile>
+        <Switch>
+          <Route exact path="/">
+            <Main
+              cardContent={cards}
+              toggleItemModal={toggleItemModal}
+              weatherCards={<WeatherCard></WeatherCard>}
+            ></Main>
+          </Route>
+          <Route path="/profile">
+            <Profile
+              cardContent={cards}
+              addButton={<AddClothsButton onclick={() => openAddModal()} className={"profile__items-AddButton"}></AddClothsButton>}
+              toggleItemModal={toggleItemModal}
+            ></Profile>
+          </Route>
+        </Switch>
+
         <Footer developerName={"Developed by Obbie"} year={2024}></Footer>
       </CurrentTemperatureUnitContext.Provider>
 

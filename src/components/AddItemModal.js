@@ -1,10 +1,13 @@
 import React, { useState, useEffect, useContext } from "react";
 import ModalWithForm from './ModalWithForm';
 import * as Constants from "../utils/constants";
+import { CurrentCardsContext } from "../context/CardsContext";
 
-// onAddItem refers to handleAddItemSubmit, which is declared in App.js
+
 const AddItemModal = (props) => {
-  const [modalData, setModalData] = useState({ "name": NaN, "imageUrl": NaN, "temperature": NaN });
+  const [idCounter, setIdCounter] = useState(6);
+  const [modalData, setModalData] = useState({ _id:idCounter, "name": NaN, "imageUrl": NaN, "temperature": NaN });
+  const { cards , setClothingItems } = useContext(CurrentCardsContext);
 
   const InputComponent = (props) => {
     return (
@@ -16,7 +19,7 @@ const AddItemModal = (props) => {
           placeholder={props.placeholder}
           name={props.name}
           value={props.value}
-          onChange={props.onchange}
+          onChange={props.onChange}
           onClick={props.onclick}
           id={props.id}
         ></input>
@@ -26,24 +29,24 @@ const AddItemModal = (props) => {
 
   useEffect(() => {
     if (props.state === true) {
-      setModalData({ "name": NaN, "imageUrl": NaN, "temperature": NaN })
+      setModalData({_id: idCounter, "name": NaN, "imageUrl": NaN, "temperature": NaN });
     }
   }, [props.state]);
 
-  function handleChange(event) {
-    console.log(event.target);
-    console.log(modalData);
-  }
-
-  const handleInputChange = (name) => {
-    console.log(modalData[String(name)])
-    // then set the name to event.target.value
-
+  const handleInputChange = (event, name) => {
+    modalData[name] = event.target.value;
   };
 
   return (
     <ModalWithForm
-      submitHandler={props.submitHandler}
+      submitHandler={()=>{
+        setClothingItems(prevState => ([
+          ...prevState,
+          modalData
+        ]));
+        setIdCounter(prevCounter => prevCounter + 1)
+        {props.onClose()}
+      }}
       className={props.className}
       onClose={props.onClose}
       state={props.state}
@@ -61,8 +64,8 @@ const AddItemModal = (props) => {
               type={item.type}
               placeholder={item.placeholder}
               name={item.name}
-              value={modalData[item.value]}
-              onChange={() => { handleInputChange(item.name) }}
+              value={item.value}
+              onChange={(event) => { handleInputChange(event, item.name) }}
               onClick={(item.onClick)}
             ></InputComponent>
           );

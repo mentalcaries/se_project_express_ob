@@ -5,10 +5,6 @@ import { CurrentTemperatureUnitContext } from "../context/CurrentTemperatureUnit
 
 // this proiject need to be compatible with all devices including desktop and mobile {hint => (display:grid && keyframes)}
 
-//list of problems;
-// 3. grid template rows for smaller devices
-// 6. there needs to be a state value instead of constantsm 
-
 const Main = (props) => {
   const { CurrentTemperatureUnit, handleTemperatureUnitChange, temperature } = useContext(CurrentTemperatureUnitContext);
 
@@ -20,7 +16,7 @@ const Main = (props) => {
           : temperature >= 66 && temperature <= 85
             ? "warm"
             : "cold";
-      if (item.weather) {
+      if (item.weather === weatherCategory) {
         return (
           <ItemCard
             key={item._id}

@@ -1,41 +1,22 @@
 import "../blocks/App.css";
 import "../index.css";
 import React, { useState, useEffect, useContext } from "react";
-import { Routes, Route, Switch, NavLink } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import Header from "./Header";
 import Main from "./Main";
 import AddClothsButton from "./AddClothsButton";
 import WeatherCard from "./WeatherCard";
-import ModalWithForm from "./ModalWithForm";
 import Footer from "./Footer";
 import ItemModal from "./ItemModal";
 import { fetchApiInfo } from "../utils/WeatherApi";
 import { CurrentTemperatureUnitContext } from "../context/CurrentTemperatureUnitContext"
+import { CurrentCardsContext } from "../context/CardsContext";
 import { Profile } from "./Profile"
 import AddItemModal from "./AddItemModal";
 import * as Constants from "../utils/constants";
 
 // item modal needs to scale better when screen size changes  
-// the cards needs to be apart of the state vars amnd use effect goes of the state variabless and then an api request 
 // weather card needs to scale apropriatly
-
-const InputComponent = (props) => {
-  return (
-    <label className={props.labelClassName}>
-      {props.labelName}
-      <input
-        className={props.inputClassName}
-        type={props.type}
-        placeholder={props.placeholder}
-        name={props.name}
-        value={props.value}
-        onChange={props.onchange}
-        onClick={props.onclick}
-        id={props.id}
-      ></input>
-    </label>
-  );
-};
 
 const App = () => {
   const [itemModal, setItemModal] = useState({
@@ -47,7 +28,7 @@ const App = () => {
   const [temperature, setTemperature] = useState("NaN");
   const [CurrentTemperatureUnit, setCurrentTempUnit] = useState("F");
   const [cards, setClothingItems] = useState(Constants.defaultClothingItems);
-
+  console.log(cards);
 
   useEffect(() => {
     fetchApiInfo()
@@ -97,41 +78,18 @@ const App = () => {
   return (
     <div className="App">
       <CurrentTemperatureUnitContext.Provider value={{ CurrentTemperatureUnit, handleTemperatureUnitChange, temperature }}>
-        {/* <ModalWithForm
-          submitHandler={() => {
-            closeAddModal();
-          }}
-          className={`modal modal_type_`}
-          onClose={() => closeAddModal()}
-          state={addModal.opened}
-          title={"New Garement"}
-          buttonText={"Add Garement"}
-          children={(name, image, weather) => {
-            return inputElements.map((item) => {
-              return (
-                <InputComponent
-                  key={item.id}
-                  labelName={item.labelName}
-                  id={item.id}
-                  labelClassName={item.labelClassName}
-                  inputClassName={item.inputClassName}
-                  type={item.type}
-                  placeholder={item.placeholder}
-                  name={item.name}
-                  value={item.value}
-                  onChange={item.onChange}
-                  onClick={item.onClick}
-                ></InputComponent>
-              );
-            });
-          }}
-        ></ModalWithForm> */}
+        <CurrentCardsContext.Provider value={{cards, setClothingItems}}>
 
         <AddItemModal
           state={addModal.opened}
           onClose={() => { closeAddModal() }}
           className={`modal modal_type_`}
-          submitHandler={NaN}
+          submitHandler={(items) => {
+            setClothingItems(prevState => ({
+              ...prevState,
+              items
+            }))
+          }}
           title={"New Garement"}
           buttonText={"Add Garement"}
         >
@@ -172,6 +130,7 @@ const App = () => {
         </Switch>
 
         <Footer developerName={"Developed by Obbie"} year={2024}></Footer>
+      </CurrentCardsContext.Provider>
       </CurrentTemperatureUnitContext.Provider>
 
     </div>

@@ -11,8 +11,8 @@ const ModalWithForm = (props) => {
   return (
     <div className={`modal ${props.state ? "" : "modal_close"}`} onClick={handleModalClick}>
       <form className="form" onSubmit={(event) => {
-        props.submitHandler()
         event.preventDefault();
+        props.submitHandler()
       }}>
         <button
           className="form__close-button"

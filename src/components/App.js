@@ -84,12 +84,6 @@ const App = () => {
           state={addModal.opened}
           onClose={() => { closeAddModal() }}
           className={`modal modal_type_`}
-          submitHandler={(items) => {
-            setClothingItems(prevState => ({
-              ...prevState,
-              items
-            }))
-          }}
           title={"New Garement"}
           buttonText={"Add Garement"}
         >

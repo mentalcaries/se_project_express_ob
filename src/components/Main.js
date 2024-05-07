@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import * as Constants from "../utils/constants";
 import ItemCard from "./ItemCard";
 import { CurrentTemperatureUnitContext } from "../context/CurrentTemperatureUnitContext"
 

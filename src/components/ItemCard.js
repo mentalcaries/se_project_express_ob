@@ -1,11 +1,12 @@
 import React from "react";
 
 const ItemCard = (props) => {
+
   return (
     <li
       className="card"
       onClick={() => {
-        props.handleClick(props.name, props.imageUrl, props.weather);
+        props.handleClick( props.name, props.imageUrl, props.weather);
       }} 
     >
       <img

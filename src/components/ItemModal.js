@@ -7,7 +7,12 @@ const ItemModal = (props) => {
       props.onClose();
     }
   };
-  
+
+  const handleDelete = () =>{
+    props.handleDelete();
+    props.onClose();
+  }
+
   return (
     <div className={`modal ${props.opened ? "" : "modal_close"}`} onClick={handleModalClick}>
       <div className="modal__container">
@@ -21,7 +26,13 @@ const ItemModal = (props) => {
           alt={props.itemName ? props.itemName : "NaN"}
         />
         <div className="modal__sub-container">
-          <h3 className="modal__text">{props.itemName}</h3>
+          <div className="modal__text-header">
+            <h3 className="modal__text">{props.itemName}</h3>
+            <button className="modal__delete-button"
+            onClick={handleDelete}
+            id={props.itemId}
+            >Delete Item</button>
+          </div>
           <h3 className="modal__text">{`Weather: ${props.itemCategory}`}</h3>
         </div>
       </div>

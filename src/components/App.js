@@ -14,21 +14,23 @@ import { CurrentCardsContext } from "../context/CardsContext";
 import { Profile } from "./Profile"
 import AddItemModal from "./AddItemModal";
 import * as Constants from "../utils/constants";
+import { DeleteModal } from "./DeleteModal";
 
 // item modal needs to scale better when screen size changes  
 // weather card needs to scale apropriatly
+// we have overlaing css props specificly the modals
 
 const App = () => {
   const [itemModal, setItemModal] = useState({
     opened: false,
-    itemInfo: { title: "NaN", link: "NaN", category: "NaN" },
+    itemInfo: { id: "NaN", title: "NaN", link: "NaN", category: "NaN" },
   });
+  const [deleteModal, setDeleteModal] = useState({opened: false})
   const [addModal, setAddModal] = useState({ opened: false });
   const [weatherData, setWeatherData] = useState("NaN");
   const [temperature, setTemperature] = useState("NaN");
   const [CurrentTemperatureUnit, setCurrentTempUnit] = useState("F");
   const [cards, setClothingItems] = useState(Constants.defaultClothingItems);
-  console.log(cards);
 
   useEffect(() => {
     fetchApiInfo()
@@ -52,6 +54,10 @@ const App = () => {
     setAddModal((prevAddModal) => ({ ...prevAddModal, opened: false }));
   };
 
+  const closeDeleteModal = () =>{
+    setDeleteModal({opened: false})
+  }
+
   const handleTemperatureUnitChange = () => {
     CurrentTemperatureUnit === "F"
       ? setCurrentTempUnit("C") :
@@ -63,10 +69,12 @@ const App = () => {
     setAddModal((prevAddModal) => ({ ...prevAddModal, opened: true }));
   };
 
-  const toggleItemModal = (title, link, category) => { // better name
+  const toggleItemModal = (id, title, link, category) => {
+    console.log(id);
     setItemModal((prevItemModal) => ({
       ...prevItemModal,
       itemInfo: {
+        id: id,
         title: title,
         link: link,
         category: category,
@@ -75,11 +83,21 @@ const App = () => {
     }));
   };
 
+  const removeCardById = (idToRemove) => {
+    setClothingItems(prevCards => prevCards.filter(card => card._id !== idToRemove));
+  };
+
   return (
     <div className="App">
       <CurrentTemperatureUnitContext.Provider value={{ CurrentTemperatureUnit, handleTemperatureUnitChange, temperature }}>
         <CurrentCardsContext.Provider value={{cards, setClothingItems}}>
 
+        <DeleteModal
+          onClose={closeDeleteModal}
+          state={deleteModal.opened}
+          executeDelete={()=>{removeCardById(itemModal.itemInfo.id)}}
+        >
+        </DeleteModal>
         <AddItemModal
           state={addModal.opened}
           onClose={() => { closeAddModal() }}
@@ -93,7 +111,9 @@ const App = () => {
           onClose={() => {
             closeItemModal();
           }}
+          handleDelete={()=>{setDeleteModal({opened: true})}}
           opened={itemModal.opened}
+          itemId={itemModal.itemInfo.id}
           itemName={itemModal.itemInfo.title}
           itemCategory={itemModal.itemInfo.category}
           itemImageUrl={itemModal.itemInfo.link}

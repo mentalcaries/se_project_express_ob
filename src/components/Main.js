@@ -8,7 +8,9 @@ const Main = (props) => {
   const { CurrentTemperatureUnit, handleTemperatureUnitChange, temperature } = useContext(CurrentTemperatureUnitContext);
 
   const cards = () => {
+    console.log(props.cardContent)
     return props.cardContent.map((item) => {
+ 
       const weatherCategory =
         temperature >= 86
           ? "hot"
@@ -16,14 +18,15 @@ const Main = (props) => {
             ? "warm"
             : "cold";
       if (item.weather === weatherCategory) {
+        if (item.name == "moncler jacket"){
+        }
         return (
           <ItemCard
-            key={item._id}
             name={item.name}
             weather={item.weather}
             imageUrl={item.link}
-            handleClick={(x, y, z) => {
-              props.toggleItemModal(x, y, z);
+            handleClick={( x, y, z) => {
+              props.toggleItemModal(item._id, x, y, z);
             }}
           ></ItemCard>
         );

@@ -6,7 +6,7 @@ import { CurrentCardsContext } from "../context/CardsContext";
 
 const AddItemModal = (props) => {
   const [idCounter, setIdCounter] = useState(6);
-  const [modalData, setModalData] = useState({ _id:idCounter, "name": NaN, "imageUrl": NaN, "temperature": NaN });
+  const [modalData, setModalData] = useState({ _id: idCounter, "name": NaN, "weather": NaN, "link": NaN });
   const { cards , setClothingItems } = useContext(CurrentCardsContext);
 
   const InputComponent = (props) => {
@@ -29,7 +29,7 @@ const AddItemModal = (props) => {
 
   useEffect(() => {
     if (props.state === true) {
-      setModalData({_id: idCounter, "name": NaN, "imageUrl": NaN, "temperature": NaN });
+      setModalData({_id: idCounter, "name": NaN, "weather": NaN, "link": NaN });
     }
   }, [props.state]);
 

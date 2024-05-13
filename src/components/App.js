@@ -14,9 +14,6 @@ import { Profile } from "./Profile"
 import AddItemModal from "./AddItemModal";
 import * as Constants from "../utils/constants";
 import { DeleteModal } from "./DeleteModal";
-import SideBar from "./SideBar"
-import ClothSection from './ClothesSection'
-import ToggleSwitch from "./ToggleSwitch";
 
 // item modal needs to scale better when screen size changes 
 // weather card needs to scale apropriatly
@@ -60,7 +57,7 @@ const App = () => {
     setDeleteModal({opened: false})
   }
 
-  const handleTemperatureUnitChange = () => {
+  const handleToggleSwitchChange = () => {
     CurrentTemperatureUnit === "F"
       ? setCurrentTempUnit("C"):
       setCurrentTempUnit("F");
@@ -91,7 +88,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <CurrentTemperatureUnitContext.Provider value={{ CurrentTemperatureUnit, handleTemperatureUnitChange }}>
+      <CurrentTemperatureUnitContext.Provider value={{ currentTemperatureUnit, handleToggleSwitchChange }}>
         <CurrentCardsContext.Provider value={{cards, setClothingItems}}>
 
         <DeleteModal
@@ -138,6 +135,7 @@ const App = () => {
           </Route>
           <Route path="/profile">
             <Profile
+              temperature={temperature}
               cardContent={cards}
               addButton={<AddClothsButton onclick={() => openAddModal()} className={"profile__items-AddButton"}></AddClothsButton>}
               toggleItemModal={toggleItemModal}

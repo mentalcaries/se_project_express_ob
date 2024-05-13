@@ -5,15 +5,15 @@ import * as Constants from "../utils/constants";
 
 
 const WeatherCard = (props) => {
-  const {CurrentTemperatureUnit, handleTemperatureUnitChange} = useContext(CurrentTemperatureUnitContext);
+  const {currentTemperatureUnit, handleToggleSwitchChange} = useContext(CurrentTemperatureUnitContext);
 
-  const displayTemperature = CurrentTemperatureUnit === "C"
+  const displayTemperature = currentTemperatureUnit === "C"
     ? Math.round((props.temperature - 32) * 5 / 9)
     : props.temperature;
 
   return (
     <div className="weather-modal">
-      <div className="weather-temp">{`${displayTemperature} ${CurrentTemperatureUnit}°`}</div>
+      <div className="weather-temp">{`${displayTemperature} ${currentTemperatureUnit}°`}</div>
       <img
         className="weather-card"
         src={Constants.cardConditions.night.stormy}

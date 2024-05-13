@@ -38,10 +38,11 @@ const Header = (props) => {
             }
 
           }} className="header__switch-checkbox"></input>
-          <div className="header__switch-button">
+          {/* <div className="header__switch-button">
             <div className="header__switch__text" style={{ whiteSpace: 'pre' }}> F     C</div>
             <div className="header__switch-circle">{CurrentTemperatureUnit}</div>
-          </div>
+          </div> */}
+          {props.toggleButton}
         </label>
 
         {props.addButton}

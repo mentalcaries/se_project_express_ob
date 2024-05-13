@@ -5,7 +5,6 @@ import { Route, Switch } from 'react-router-dom';
 import Header from "./Header";
 import Main from "./Main";
 import AddClothsButton from "./AddClothsButton";
-import WeatherCard from "./WeatherCard";
 import Footer from "./Footer";
 import ItemModal from "./ItemModal";
 import { fetchApiInfo } from "../utils/WeatherApi";
@@ -15,8 +14,11 @@ import { Profile } from "./Profile"
 import AddItemModal from "./AddItemModal";
 import * as Constants from "../utils/constants";
 import { DeleteModal } from "./DeleteModal";
+import SideBar from "./SideBar"
+import ClothSection from './ClothesSection'
+import ToggleSwitch from "./ToggleSwitch";
 
-// item modal needs to scale better when screen size changes  
+// item modal needs to scale better when screen size changes 
 // weather card needs to scale apropriatly
 // we have overlaing css props specificly the modals
 
@@ -60,7 +62,7 @@ const App = () => {
 
   const handleTemperatureUnitChange = () => {
     CurrentTemperatureUnit === "F"
-      ? setCurrentTempUnit("C") :
+      ? setCurrentTempUnit("C"):
       setCurrentTempUnit("F");
 
   }
@@ -120,6 +122,7 @@ const App = () => {
         ></ItemModal>
 
         <Header
+          toggleButton={<ToggleSwitch tempUnit={CurrentTemperatureUnit}></ToggleSwitch>}
           addButton={
             <AddClothsButton onclick={() => openAddModal()}></AddClothsButton>
           }
@@ -131,7 +134,6 @@ const App = () => {
             <Main
               cardContent={cards}
               toggleItemModal={toggleItemModal}
-              weatherCards={<WeatherCard></WeatherCard>}
             ></Main>
           </Route>
           <Route path="/profile">

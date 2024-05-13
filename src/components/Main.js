@@ -1,6 +1,8 @@
 import React, { useContext } from 'react';
 import ItemCard from "./ItemCard";
-import { CurrentTemperatureUnitContext } from "../context/CurrentTemperatureUnitContext"
+import { CurrentTemperatureUnitContext } from "../context/CurrentTemperatureUnitContext";
+import WeatherCard from "./WeatherCard";
+
 
 // this proiject need to be compatible with all devices including desktop and mobile {hint => (display:grid && keyframes)}
 
@@ -8,7 +10,6 @@ const Main = (props) => {
   const { CurrentTemperatureUnit, handleTemperatureUnitChange, temperature } = useContext(CurrentTemperatureUnitContext);
 
   const cards = () => {
-    console.log(props.cardContent)
     return props.cardContent.map((item) => {
  
       const weatherCategory =
@@ -35,7 +36,7 @@ const Main = (props) => {
   };
   return (
     <main className="">
-      {props.weatherCards}
+      <WeatherCard></WeatherCard>
       <div>
         <div className="profile__section"></div>
         <ul>{cards()}</ul>

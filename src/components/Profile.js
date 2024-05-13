@@ -1,10 +1,9 @@
 import React, { useContext } from 'react';
-import profileLogo from "../images/terrence.svg";
 import * as Constants from "../utils/constants";
 import ItemCard from "./ItemCard";
 import {CurrentTemperatureUnitContext} from "../context/CurrentTemperatureUnitContext"
-
-
+import SideBar from './SideBar';
+import ClothesSection from './ClothesSection';
 
 const Profile = (props) =>{
 
@@ -34,24 +33,10 @@ const Profile = (props) =>{
     });
   };
 
-    const returnImage = (link, alt, id = "", className = "") => {
-        return <img src={link} alt={alt} id={id} className={className} />;
-      };
-
     return(
         <div className='profile'>
-            <div className='profile__avatar'>
-                <h3 className='profile__avatar-text'>Terrence Tegegne </h3>
-                {returnImage(profileLogo, "Profile Logo","", "profile__logo")}
-            </div>
-            <div className='profile__items'>
-            <div className='profile__items-header'>
-                <h3 className='profile__items-text'>Your Items</h3>
-                {props.addButton}
-            </div>
-            <div className='profile__items-cards'>{cards()}</div>
-
-            </div>
+            <SideBar></SideBar>
+            <ClothesSection addButton={props.addButton} cards={cards()}></ClothesSection>
         </div>
     )
 }

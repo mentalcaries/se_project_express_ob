@@ -91,7 +91,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <CurrentTemperatureUnitContext.Provider value={{ CurrentTemperatureUnit, handleTemperatureUnitChange, temperature }}>
+      <CurrentTemperatureUnitContext.Provider value={{ CurrentTemperatureUnit, handleTemperatureUnitChange }}>
         <CurrentCardsContext.Provider value={{cards, setClothingItems}}>
 
         <DeleteModal
@@ -122,7 +122,6 @@ const App = () => {
         ></ItemModal>
 
         <Header
-          toggleButton={<ToggleSwitch tempUnit={CurrentTemperatureUnit}></ToggleSwitch>}
           addButton={
             <AddClothsButton onclick={() => openAddModal()}></AddClothsButton>
           }
@@ -132,6 +131,7 @@ const App = () => {
         <Switch>
           <Route exact path="/">
             <Main
+              temperature={temperature}
               cardContent={cards}
               toggleItemModal={toggleItemModal}
             ></Main>

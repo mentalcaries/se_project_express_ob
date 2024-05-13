@@ -7,15 +7,14 @@ import WeatherCard from "./WeatherCard";
 // this proiject need to be compatible with all devices including desktop and mobile {hint => (display:grid && keyframes)}
 
 const Main = (props) => {
-  const { CurrentTemperatureUnit, handleTemperatureUnitChange, temperature } = useContext(CurrentTemperatureUnitContext);
 
   const cards = () => {
     return props.cardContent.map((item) => {
  
       const weatherCategory =
-        temperature >= 86
+        props.temperature >= 86
           ? "hot"
-          : temperature >= 66 && temperature <= 85
+          : props.temperature >= 66 && props.temperature <= 85
             ? "warm"
             : "cold";
       if (item.weather === weatherCategory) {
@@ -36,7 +35,7 @@ const Main = (props) => {
   };
   return (
     <main className="">
-      <WeatherCard></WeatherCard>
+      <WeatherCard temperature={props.temperature}></WeatherCard>
       <div>
         <div className="profile__section"></div>
         <ul>{cards()}</ul>

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import profileLogo from "../images/terrence.svg";
 import companyLogo from "../images/Logo.svg";
 import { CurrentTemperatureUnitContext } from "../context/CurrentTemperatureUnitContext"
-
+import ToggleSwitch from './ToggleSwitch';
 
 const currentDate = new Date().toLocaleString("default", {
   month: "long",
@@ -42,6 +42,7 @@ const Header = (props) => {
             <div className="header__switch__text" style={{ whiteSpace: 'pre' }}> F     C</div>
             <div className="header__switch-circle">{CurrentTemperatureUnit}</div>
           </div> */}
+          <ToggleSwitch tempUnit={CurrentTemperatureUnit}></ToggleSwitch>
           {props.toggleButton}
         </label>
 

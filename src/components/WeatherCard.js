@@ -5,11 +5,11 @@ import * as Constants from "../utils/constants";
 
 
 const WeatherCard = (props) => {
-  const {CurrentTemperatureUnit, handleTemperatureUnitChange, temperature} = useContext(CurrentTemperatureUnitContext);
+  const {CurrentTemperatureUnit, handleTemperatureUnitChange} = useContext(CurrentTemperatureUnitContext);
 
   const displayTemperature = CurrentTemperatureUnit === "C"
-    ? Math.round((temperature - 32) * 5 / 9)
-    : temperature;
+    ? Math.round((props.temperature - 32) * 5 / 9)
+    : props.temperature;
 
   return (
     <div className="weather-modal">

@@ -28,7 +28,7 @@ const App = () => {
   const [addModal, setAddModal] = useState({ opened: false });
   const [weatherData, setWeatherData] = useState("NaN");
   const [temperature, setTemperature] = useState("NaN");
-  const [CurrentTemperatureUnit, setCurrentTempUnit] = useState("F");
+  const [currentTemperatureUnit, setCurrentTempUnit] = useState("F");
   const [cards, setClothingItems] = useState(Constants.defaultClothingItems);
 
   useEffect(() => {
@@ -58,7 +58,7 @@ const App = () => {
   }
 
   const handleToggleSwitchChange = () => {
-    CurrentTemperatureUnit === "F"
+    currentTemperatureUnit === "F"
       ? setCurrentTempUnit("C"):
       setCurrentTempUnit("F");
 

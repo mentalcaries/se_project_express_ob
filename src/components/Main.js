@@ -7,6 +7,7 @@ import { CurrentTemperatureUnitContext } from "../context/CurrentTemperatureUnit
 // this proiject need to be compatible with all devices including desktop and mobile {hint => (display:grid && keyframes)}
 
 const Main = (props) => {
+  const {currentTemperatureUnit, handleToggleSwitchChange} = useContext(CurrentTemperatureUnitContext);
 
   const cards = () => {
     return props.cardContent.map((item) => {
@@ -35,7 +36,7 @@ const Main = (props) => {
   };
   return (
     <main className="">
-      <WeatherCard temperature={props.temperature}></WeatherCard>
+      <WeatherCard tempUnit={currentTemperatureUnit} temperature={props.temperature}></WeatherCard>
       <div>
         <div className="profile__section"></div>
         <ul>{cards()}</ul>

@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import ItemCard from "./ItemCard";
 import WeatherCard from "./WeatherCard";
+import { CurrentTemperatureUnitContext } from "../context/CurrentTemperatureUnitContext"
 
 
 // this proiject need to be compatible with all devices including desktop and mobile {hint => (display:grid && keyframes)}

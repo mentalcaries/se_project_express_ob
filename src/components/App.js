@@ -17,7 +17,7 @@ import { DeleteModal } from "./DeleteModal";
 
 // item modal needs to scale better when screen size changes 
 // weather card needs to scale apropriatly
-// we have overlaing css props specificly the modals
+// we have overlaing css props specificly the modals in different css files.
 
 const App = () => {
   const [itemModal, setItemModal] = useState({

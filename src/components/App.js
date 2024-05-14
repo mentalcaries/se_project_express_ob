@@ -69,7 +69,6 @@ const App = () => {
   };
 
   const toggleItemModal = (id, title, link, category) => {
-    console.log(id);
     setItemModal((prevItemModal) => ({
       ...prevItemModal,
       itemInfo: {

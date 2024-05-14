@@ -23,6 +23,7 @@ const Main = (props) => {
         }
         return (
           <ItemCard
+            key={item._id}
             name={item.name}
             weather={item.weather}
             imageUrl={item.link}

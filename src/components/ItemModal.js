@@ -12,7 +12,7 @@ const ItemModal = (props) => {
     props.handleDelete();
     props.onClose();
   }
-
+  
   return (
     <div className={`modal ${props.opened ? "" : "modal_close"}`} onClick={handleModalClick}>
       <div className="modal__container">

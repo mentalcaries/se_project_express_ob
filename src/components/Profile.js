@@ -22,7 +22,7 @@ const Profile = (props) =>{
             weather={item.weather}
             imageUrl={item.link}
             handleClick={(x, y, z) => {
-              props.toggleItemModal(x, y, z);
+              props.toggleItemModal(item._id,x, y, z);
             }} 
           ></ItemCard>
         );

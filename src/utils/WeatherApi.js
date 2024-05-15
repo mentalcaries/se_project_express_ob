@@ -17,4 +17,4 @@ const fetchApiInfo = () => {
     });
 };
 
-export { fetchApiInfo };
+export default fetchApiInfo;

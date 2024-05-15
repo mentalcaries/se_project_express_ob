@@ -11,8 +11,8 @@ const ItemCard = (props) => {
     >
       <img
         className="card__image"
-        src={props.imageUrl ? props.imageUrl : "NaN"}
-        alt={props.name ? props.name : "NaN"}
+        src={props.imageUrl ? props.imageUrl : ""}
+        alt={props.name ? props.name : ""}
       />
       <h3 className="card__title">{props.name}</h3>
     </li>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React from "react";
 import profileLogo from "../images/terrence.svg";
 
 const returnImage = (link, alt, id = "", className = "") => {

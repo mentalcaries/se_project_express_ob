@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React from "react";
 
 const DeleteModal = (props) =>{
     const handleModalClick = (event) => {
@@ -23,4 +23,4 @@ const DeleteModal = (props) =>{
     )
 }
 
-export {DeleteModal}
+export default DeleteModal 

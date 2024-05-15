@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import ItemCard from "./ItemCard";
 import SideBar from './SideBar';
 import ClothesSection from './ClothesSection';
@@ -38,4 +38,4 @@ const Profile = (props) =>{
     )
 }
 
-export {Profile}
+export default Profile

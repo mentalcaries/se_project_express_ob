@@ -22,8 +22,8 @@ const ItemModal = (props) => {
         ></button>
         <img
           className="modal__image"
-          src={props.itemImageUrl ? props.itemImageUrl : "NaN"}
-          alt={props.itemName ? props.itemName : "NaN"}
+          src={props.itemImageUrl ? props.itemImageUrl : ""}
+          alt={props.itemName ? props.itemName : ""}
         />
         <div className="modal__sub-container">
           <div className="modal__text-header">

@@ -1,17 +1,14 @@
 import React, { useContext } from 'react';
 import ItemCard from "./ItemCard";
 import WeatherCard from "./WeatherCard";
-import { CurrentTemperatureUnitContext } from "../context/CurrentTemperatureUnitContext"
-
-
-// this proiject need to be compatible with all devices including desktop and mobile {hint => (display:grid && keyframes)}
+import CurrentTemperatureUnitContext from "../context/CurrentTemperatureUnitContext"
 
 const Main = (props) => {
   const {currentTemperatureUnit, handleToggleSwitchChange} = useContext(CurrentTemperatureUnitContext);
 
   const cards = () => {
     return props.cardContent.map((item) => {
- 
+
       const weatherCategory =
         props.temperature >= 86
           ? "hot"
@@ -27,7 +24,7 @@ const Main = (props) => {
             name={item.name}
             weather={item.weather}
             imageUrl={item.link}
-            handleClick={( x, y, z) => {
+            handleClick={(x, y, z) => {
               props.toggleItemModal(item._id, x, y, z);
             }}
           ></ItemCard>

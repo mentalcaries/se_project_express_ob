@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import ModalWithForm from './ModalWithForm';
 import * as Constants from "../utils/constants";
-import { CurrentCardsContext } from "../context/CardsContext";
+import CurrentCardsContext from "../context/CardsContext";
 
 
 const AddItemModal = (props) => {

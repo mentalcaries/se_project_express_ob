@@ -14,7 +14,9 @@ import CurrentTemperatureUnitContext from "../context/CurrentTemperatureUnitCont
 import CurrentCardsContext from "../context/CardsContext";
 import Profile from "./Profile"
 import AddItemModal from "./AddItemModal";
+import getCards from "../utils/api";
 
+getCards();
 const App = () => {
   const [itemModal, setItemModal] = useState({
     opened: false,

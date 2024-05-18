@@ -16,7 +16,8 @@ import Profile from "./Profile"
 import AddItemModal from "./AddItemModal";
 import getCards from "../utils/api";
 
-getCards();
+
+
 const App = () => {
   const [itemModal, setItemModal] = useState({
     opened: false,
@@ -27,7 +28,11 @@ const App = () => {
   const [weatherData, setWeatherData] = useState("");
   const [temperature, setTemperature] = useState("");
   const [currentTemperatureUnit, setCurrentTempUnit] = useState("F");
-  const [cards, setClothingItems] = useState(Constants.defaultClothingItems);
+  const [cards, setClothingItems] = useState(getCards());
+
+  // getCards().then((results) =>{
+  //   // console.log(results);
+  // })
 
   useEffect(() => {
     fetchApiInfo()

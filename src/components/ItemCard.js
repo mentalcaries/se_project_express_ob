@@ -2,6 +2,8 @@ import React from "react";
 
 const ItemCard = (props) => {
 
+
+  console.log("well there is an error")
   return (
     <li
       className="card"

@@ -40,7 +40,7 @@ const Main = (props) => {
     };
 
     fetchCards();
-  }, [props.cardContent, props.temperature]); // Add dependencies to useEffect
+  }, [props.cardContent, props.temperature]);
 
   return (
     <main className="">

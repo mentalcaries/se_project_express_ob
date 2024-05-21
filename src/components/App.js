@@ -34,8 +34,8 @@ const App = () => {
     getCards().then((results) => {
       setClothingItems(results);
     });
+ 
   }, []);
-  console.log(cards)
   useEffect(() => {
     fetchApiInfo()
       .then((data) => {

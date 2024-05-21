@@ -12,7 +12,6 @@ const Profile = (props) =>{
       
     }
     return items.map((item) => {
-      console.log(item);
       const weatherCategory =
         props.temperature >= 86
           ? "hot"
@@ -20,7 +19,6 @@ const Profile = (props) =>{
             ? "warm"
             : "cold";
       if (item.weather === weatherCategory) {
-        console.log(item)
         return (
           <ItemCard
             key={item._id}

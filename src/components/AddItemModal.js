@@ -34,11 +34,7 @@ const AddItemModal = (props) => {
   }, [props.state]);
 
   const handleInputChange = (event, name) => {
-    //trigger a rerender somehow
     modalData[name] = event.target.value;
-    // console.log(name);
-    console.log(modalData);
-    // console.log(props.apiAdd)
   };
 
   return (

@@ -14,9 +14,9 @@ import CurrentTemperatureUnitContext from "../context/CurrentTemperatureUnitCont
 import CurrentCardsContext from "../context/CardsContext";
 import Profile from "./Profile"
 import AddItemModal from "./AddItemModal";
-import getCards from "../utils/api";
-
-
+import { getCards } from "../utils/api";
+import { addCard } from "../utils/api";
+import { deleteCard } from "../utils/api";
 
 const App = () => {
   const [itemModal, setItemModal] = useState({
@@ -28,12 +28,14 @@ const App = () => {
   const [weatherData, setWeatherData] = useState("");
   const [temperature, setTemperature] = useState("");
   const [currentTemperatureUnit, setCurrentTempUnit] = useState("F");
-  const [cards, setClothingItems] = useState(getCards());
+  const [cards, setClothingItems] = useState('');
 
-  // getCards().then((results) =>{
-  //   // console.log(results);
-  // })
-
+  useEffect(() => {
+    getCards().then((results) => {
+      setClothingItems(results);
+    });
+  }, []);
+  console.log(cards)
   useEffect(() => {
     fetchApiInfo()
       .then((data) => {
@@ -102,6 +104,7 @@ const App = () => {
             className={`modal modal_type_`}
             title={"New Garement"}
             buttonText={"Add Garement"}
+            apiAdd={addCard}
           >
           </AddItemModal>
 
@@ -115,6 +118,7 @@ const App = () => {
             itemName={itemModal.itemInfo.title}
             itemCategory={itemModal.itemInfo.category}
             itemImageUrl={itemModal.itemInfo.link}
+            apiDelete={deleteCard}
           ></ItemModal>
 
           <Header

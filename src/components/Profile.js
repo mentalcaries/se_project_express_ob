@@ -5,9 +5,14 @@ import ClothesSection from './ClothesSection';
 
 const Profile = (props) =>{
 
-
-  const cards = () => {
-    return props.cardContent.map((item) => {
+  const cards = () =>{
+    let items =[]
+    for (let i = 0; i <= props.cardContent.length - 1; i++) {
+      items.push(props.cardContent[i])
+      
+    }
+    return items.map((item) => {
+      console.log(item);
       const weatherCategory =
         props.temperature >= 86
           ? "hot"
@@ -15,20 +20,21 @@ const Profile = (props) =>{
             ? "warm"
             : "cold";
       if (item.weather === weatherCategory) {
+        console.log(item)
         return (
           <ItemCard
             key={item._id}
             name={item.name}
             weather={item.weather}
-            imageUrl={item.link}
+            imageUrl={item.imageUrl}
             handleClick={(x, y, z) => {
-              props.toggleItemModal(item._id,x, y, z);
-            }} 
+              props.toggleItemModal(item._id, x, y, z);
+            }}
           ></ItemCard>
         );
       }
     });
-  };
+  }
 
     return(
         <div className='profile'>

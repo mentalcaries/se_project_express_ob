@@ -5,12 +5,52 @@
 
 const baseUrl = 'http://localhost:3001';
 
-const getCards = () =>{
-    return fetch(`${baseUrl}/items`).then((response) =>{
-        return response.json()
-    }).then((results) =>{
-        return results;
+const getCards = () => {
+  return fetch(`${baseUrl}/items`)
+    .then((response) => {
+      return response.json();
     })
-}
+    .then((results) => {
+      return results;
+    });
+};
 
-export default getCards
+const addCard = (data) => {
+    return fetch(`${baseUrl}/items`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then((result) => {
+        return result;
+      })
+
+  };
+
+  const deleteCard = (id) => {
+    return fetch(`${baseUrl}/items/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then((result) => result)
+
+  };
+
+export { getCards, addCard, deleteCard };
+

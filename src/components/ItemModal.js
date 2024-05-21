@@ -8,11 +8,16 @@ const ItemModal = (props) => {
     }
   };
 
-  const handleDelete = () =>{
-    props.handleDelete();
-    props.onClose();
+  const handleDelete = () => {
+
+    props.apiDelete(props.itemId).then((results) => {
+      props.handleDelete();
+      props.onClose();
+    }).catch((error) => {
+      console.error('There was a problem with the fetch operation:', error);
+    });
   }
-  
+
   return (
     <div className={`modal ${props.opened ? "" : "modal_close"}`} onClick={handleModalClick}>
       <div className="modal__container">
@@ -29,8 +34,8 @@ const ItemModal = (props) => {
           <div className="modal__text-header">
             <h3 className="modal__text">{props.itemName}</h3>
             <button className="modal__delete-button"
-            onClick={handleDelete}
-            id={props.itemId}
+              onClick={handleDelete}
+              id={props.itemId}
             >Delete Item</button>
           </div>
           <h3 className="modal__text">{`Weather: ${props.itemCategory}`}</h3>

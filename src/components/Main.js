@@ -7,47 +7,42 @@ import CurrentTemperatureUnitContext from "../context/CurrentTemperatureUnitCont
 
 const Main = (props) => {
   const {currentTemperatureUnit, handleToggleSwitchChange} = useContext(CurrentTemperatureUnitContext);
-  const [itemCards, setCards] = useState('');
 
-  console.log(props.cardContent)
-  useEffect(() => {
-    const fetchCards = () => {
-      props.cardContent.then((results) =>{
-        const cards = results.map((item) => {
-          console.log(item);
-          const weatherCategory =
-            props.temperature >= 86
-              ? "hot"
-              : props.temperature >= 66 && props.temperature <= 85
-                ? "warm"
-                : "cold";
-          if (item.weather === weatherCategory) {
-            return (
-              <ItemCard
-                key={item._id}
-                name={item.name}
-                weather={item.weather}
-                imageUrl={item.link}
-                handleClick={(x, y, z) => {
-                  props.toggleItemModal(item._id, x, y, z);
-                }}
-              ></ItemCard>
-            );
-          }
-        });
-        setCards(cards);
-      })
-    };
-
-    fetchCards();
-  }, [props.cardContent, props.temperature]);
+  const cards = () =>{
+    let items =[]
+    for (let i = 0; i <= props.cardContent.length - 1; i++) {
+      items.push(props.cardContent[i])
+      
+    }
+    return items.map((item) => {
+      const weatherCategory =
+        props.temperature >= 86
+          ? "hot"
+          : props.temperature >= 66 && props.temperature <= 85
+            ? "warm"
+            : "cold";
+      if (item.weather === weatherCategory) {
+        return (
+          <ItemCard
+            key={item._id}
+            name={item.name}
+            weather={item.weather}
+            imageUrl={item.imageUrl}
+            handleClick={(x, y, z) => {
+              props.toggleItemModal(item._id, x, y, z);
+            }}
+          ></ItemCard>
+        );
+      }
+    });
+  }
 
   return (
     <main className="">
       <WeatherCard tempUnit={currentTemperatureUnit} temperature={props.temperature}></WeatherCard>
       <div>
         <div className="profile__section"></div>
-        <ul>{itemCards}</ul>
+        <ul>{cards()}</ul>
       </div>
       <br />
     </main>

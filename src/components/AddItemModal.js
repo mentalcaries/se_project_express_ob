@@ -5,9 +5,9 @@ import CurrentCardsContext from "../context/CardsContext";
 
 
 const AddItemModal = (props) => {
-  const [idCounter, setIdCounter] = useState(6);
-  const [modalData, setModalData] = useState({ _id: idCounter, "name": NaN, "weather": NaN, "link": NaN });
-  const { cards , setClothingItems } = useContext(CurrentCardsContext);
+  const [idCounter, setIdCounter] = useState(17);
+  const [modalData, setModalData] = useState({ _id: idCounter, "name": NaN, "weather": NaN, "imageUrl": NaN });
+  const { cards, setClothingItems } = useContext(CurrentCardsContext);
 
   const InputComponent = (props) => {
     return (
@@ -29,23 +29,33 @@ const AddItemModal = (props) => {
 
   useEffect(() => {
     if (props.state === true) {
-      setModalData({_id: idCounter, "name": NaN, "weather": NaN, "link": NaN });
+      setModalData({ _id: idCounter, "name": NaN, "weather": NaN, "imageUrl": NaN });
     }
   }, [props.state]);
 
   const handleInputChange = (event, name) => {
+    //trigger a rerender somehow
     modalData[name] = event.target.value;
+    // console.log(name);
+    console.log(modalData);
+    // console.log(props.apiAdd)
   };
 
   return (
     <ModalWithForm
-      submitHandler={()=>{
-        setClothingItems(prevState => ([
-          ...prevState,
-          modalData
-        ]));
-        setIdCounter(prevCounter => prevCounter + 1)
-        {props.onClose()}
+      submitHandler={() => {
+        props.apiAdd(modalData).then((results) => {
+          setClothingItems(prevState => ([
+            ...prevState,
+            modalData
+          ]));
+
+          setIdCounter(prevCounter => prevCounter + 1)
+          { props.onClose() }
+        }).catch((error) => {
+          console.error('There was a problem with the fetch operation:', error);
+        });
+
       }}
       className={props.className}
       onClose={props.onClose}

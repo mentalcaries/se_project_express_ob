@@ -37,10 +37,15 @@ const Main = (props) => {
     });
   }
 
+  const displayTemperature = currentTemperatureUnit === "C"
+  ? Math.round((props.temperature - 32) * 5 / 9)
+  : props.temperature;
+
   return (
     <main className="">
       <WeatherCard tempUnit={currentTemperatureUnit} temperature={props.temperature}></WeatherCard>
       <div>
+        <h3 className='main__text'>{`Today is ${displayTemperature} ${currentTemperatureUnit} / You may want to wear:`}</h3>
         <div className="profile__section"></div>
         <ul>{cards()}</ul>
       </div>

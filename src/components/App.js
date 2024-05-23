@@ -18,6 +18,12 @@ import { getCards } from "../utils/api";
 import { addCard } from "../utils/api";
 import { deleteCard } from "../utils/api";
 
+//when i click on a moon bird after an unsuccessfull id attempt more moon birds get rendered to the dom 
+// we need to make a truly s id system 
+// css must be optimized too much overlay between different files. 
+// why use card context instead of passing the state
+// escape key should close the modal. 
+
 const App = () => {
   const [itemModal, setItemModal] = useState({
     opened: false,
@@ -95,7 +101,7 @@ const App = () => {
           <DeleteModal
             onClose={closeDeleteModal}
             state={deleteModal.opened}
-            executeDelete={() => { removeCardById(itemModal.itemInfo.id) }}
+            executeDelete={() => { deleteCard(itemModal.itemInfo.id).then(removeCardById(itemModal.itemInfo.id)) }}
           >
           </DeleteModal>
           <AddItemModal
@@ -118,7 +124,6 @@ const App = () => {
             itemName={itemModal.itemInfo.title}
             itemCategory={itemModal.itemInfo.category}
             itemImageUrl={itemModal.itemInfo.link}
-            apiDelete={deleteCard}
           ></ItemModal>
 
           <Header

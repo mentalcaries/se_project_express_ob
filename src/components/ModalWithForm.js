@@ -9,7 +9,7 @@ const ModalWithForm = (props) => {
   };
 
   return (
-    <div className={`modal ${props.state ? "" : "modal_close"}`} onClick={handleModalClick}>
+    <div className={`modal ${props.state ? "" : "modal_close"}`} onKeyDown={props.onKeyDown} onClick={handleModalClick}>
       <form className="form" onSubmit={(event) => {
         event.preventDefault();
         props.submitHandler()

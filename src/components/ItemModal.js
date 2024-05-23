@@ -9,13 +9,8 @@ const ItemModal = (props) => {
   };
 
   const handleDelete = () => {
-
-    props.apiDelete(props.itemId).then((results) => {
-      props.handleDelete();
-      props.onClose();
-    }).catch((error) => {
-      console.error('There was a problem with the fetch operation:', error);
-    });
+    props.handleDelete();
+    props.onClose(); 
   }
 
   return (

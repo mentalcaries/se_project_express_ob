@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import profileLogo from "../images/terrence.svg";
 import companyLogo from "../images/Logo.svg";
 import CurrentTemperatureUnitContext from "../context/CurrentTemperatureUnitContext"
-import ToggleSwitch from './ToggleSwitch'; 
+import ToggleSwitch from './ToggleSwitch';
 
 const currentDate = new Date().toLocaleString("default", {
   month: "long",
@@ -29,13 +29,9 @@ const Header = (props) => {
       <div className="header__section header__section_margin_left">
         <label className="header__switch">
 
-          <input type="checkbox" onClick={(event) => {
+          <input type="checkbox" onClick={() => {
 
-            if (event.target.checked) {
-              { handleToggleSwitchChange() };
-            } else {
-              { handleToggleSwitchChange() };
-            }
+            { handleToggleSwitchChange() };
 
           }} className="header__switch-checkbox"></input>
           <ToggleSwitch tempUnit={currentTemperatureUnit}></ToggleSwitch>

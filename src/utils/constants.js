@@ -14,7 +14,7 @@ import cloudyNightImage from "../images/cloudyNight.svg";
 const defaultClothingItems = [
   {
     _id: 0,
-    name: "Cap", 
+    name: "Cap",
     weather: "hot",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Cap.png?etag=f3dad389b22909cafa73cff9f9a3d591",
   },
@@ -129,4 +129,4 @@ const cardConditions = {
   },
 };
 
-export { defaultClothingItems, longitude, latitude, cardConditions, inputElements};
+export { defaultClothingItems, longitude, latitude, cardConditions, inputElements };

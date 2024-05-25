@@ -1,4 +1,5 @@
 import React from "react";
+import { useEscape } from "../utils/useEscape";
 
 const ItemModal = (props) => {
 
@@ -10,8 +11,10 @@ const ItemModal = (props) => {
 
   const handleDelete = () => {
     props.handleDelete();
-    props.onClose(); 
+    props.onClose();
   }
+
+  useEscape(ItemModal, props.onClose);
 
   return (
     <div className={`modal ${props.opened ? "" : "modal_close"}`} onClick={handleModalClick}>

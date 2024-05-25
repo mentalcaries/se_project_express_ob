@@ -18,12 +18,6 @@ import { getCards } from "../utils/api";
 import { addCard } from "../utils/api";
 import { deleteCard } from "../utils/api";
 
-//when i click on a moon bird after an unsuccessfull id attempt more moon birds get rendered to the dom 
-// we need to make a truly s id system 
-// css must be optimized too much overlay between different files. 
-// why use card context instead of passing the state
-// escape key should close the modal. 
-
 const App = () => {
   const [itemModal, setItemModal] = useState({
     opened: false,
@@ -31,16 +25,18 @@ const App = () => {
   });
   const [deleteModal, setDeleteModal] = useState({ opened: false })
   const [addModal, setAddModal] = useState({ opened: false });
-  const [weatherData, setWeatherData] = useState("");
-  const [temperature, setTemperature] = useState("");
+  const [weatherData, setWeatherData] = useState({});
+  const [temperature, setTemperature] = useState(0);
   const [currentTemperatureUnit, setCurrentTempUnit] = useState("F");
-  const [cards, setClothingItems] = useState('');
+  const [cards, setClothingItems] = useState([]);
 
   useEffect(() => {
     getCards().then((results) => {
       setClothingItems(results);
+    }).catch((response) => {
+      console.error(response);
     });
- 
+
   }, []);
   useEffect(() => {
     fetchApiInfo()
@@ -76,6 +72,8 @@ const App = () => {
 
   }
 
+  console.log(cards)
+
   const toggleItemModal = (id, title, link, category) => {
     setItemModal((prevItemModal) => ({
       ...prevItemModal,
@@ -101,7 +99,11 @@ const App = () => {
           <DeleteModal
             onClose={closeDeleteModal}
             state={deleteModal.opened}
-            executeDelete={() => { deleteCard(itemModal.itemInfo.id).then(removeCardById(itemModal.itemInfo.id)) }}
+            executeDelete={() => {
+              return deleteCard(itemModal.itemInfo.id).then(() => {
+                removeCardById(itemModal.itemInfo.id)
+              });
+            }}
           >
           </DeleteModal>
           <AddItemModal
@@ -157,6 +159,12 @@ const App = () => {
 
     </div>
   );
+
+
+
 };
 
 export default App;
+
+
+

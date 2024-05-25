@@ -1,55 +1,32 @@
 import React, { useState, useEffect, useContext } from "react";
 import ModalWithForm from './ModalWithForm';
-import * as Constants from "../utils/constants";
 import CurrentCardsContext from "../context/CardsContext";
+import useEscape from "../utils/useEscape";
 
 const AddItemModal = (props) => {
   const { cards, setClothingItems } = useContext(CurrentCardsContext);
-  const [idCounter, setIdCounter] = useState(cards.length);
-  const [modalData, setModalData] = useState({ _id: idCounter, "name": NaN, "weather": NaN, "imageUrl": NaN });
+  const [modalData, setModalData] = useState({ _id: 17, "name": "", "weather": "", "imageUrl": "" });
 
-  function arrayDifference(avalableIds, usedIds) {
-    const difference1 = avalableIds.filter(x => !usedIds.includes(x));
-    return difference1;
+  function findArrayDifference(avalableIds, usedIds) {
+    const difference = avalableIds.filter(x => !usedIds.includes(x));
+    return difference;
   }
 
   function findId(arr) {
-    let stableCount = 1
-    let usedIds = []
-    let avalableIds =[]
-    for (let i = 1; i <= arr.length + 1; i++){
+    let stableCount = 1;
+    let usedIds = [];
+    let avalableIds = [];
+    for (let i = 1; i <= arr.length + 1; i++) {
       avalableIds.push(i)
     }
-    for (let item of arr){
+    for (let item of arr) {
       stableCount += 1;
       usedIds.push(item._id);
+    }
+    return findArrayDifference(avalableIds, usedIds)[0];
   }
-  
-  if (arrayDifference(avalableIds, usedIds).length >= 1){
-    return arrayDifference(avalableIds, usedIds)[0]
-  }
-}
 
-  const InputComponent = (props) => {
-  
-    findId(cards);
-    return (
-      <label className={props.labelClassName}>
-        {props.labelName}
-        <input
-          required={true}
-          className={props.inputClassName}
-          type={props.type}
-          placeholder={props.placeholder}
-          name={props.name}
-          value={props.value}
-          onChange={props.onChange}
-          onClick={props.onclick}
-          id={props.id}
-        ></input>
-      </label>
-    );
-  };
+  useEscape(AddItemModal, props.onClose);
 
   useEffect(() => {
     if (props.state === true) {
@@ -61,18 +38,17 @@ const AddItemModal = (props) => {
     modalData[name] = event.target.value;
   };
 
-  const submitFunction = () =>{
-      props.apiAdd(modalData).then((results) => {
-        setClothingItems(prevState => ([
-          ...prevState,
-          modalData
-        ]));
-
-        setIdCounter(prevCounter => prevCounter * 3)
-        { props.onClose() }
-      }).catch((error) => {
-        console.error('There was a problem with the fetch operation:', error);
-      });
+  const submitFunction = () => {
+    props.apiAdd(modalData).then((results) => {
+      setClothingItems(prevState => ([
+        ...prevState,
+        modalData
+      ]))
+    }).then(() => {
+      props.onClose()
+    }).catch((error) => {
+      console.error('There was a problem with the fetch operation:', error);
+    });
 
   }
   const handleKeyDown = (event) => {
@@ -91,25 +67,7 @@ const AddItemModal = (props) => {
       state={props.state}
       title={props.title}
       buttonText={props.buttonText}
-      children={(name, image, weather) => {
-        return Constants.inputElements.map((item) => {
-          return (
-            <InputComponent
-              key={item.id}
-              labelName={item.labelName}
-              id={item.id}
-              labelClassName={item.labelClassName}
-              inputClassName={item.inputClassName}
-              type={item.type}
-              placeholder={item.placeholder}
-              name={item.name}
-              value={item.value}
-              onChange={(event) => { handleInputChange(event, item.name) }}
-              onClick={(item.onClick)}
-            ></InputComponent>
-          );
-        });
-      }}
+      handleInputChange={handleInputChange}
     >
     </ModalWithForm>
   );

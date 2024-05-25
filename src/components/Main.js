@@ -1,20 +1,18 @@
 
 
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext } from 'react';
 import ItemCard from "./ItemCard";
 import WeatherCard from "./WeatherCard";
-import CurrentTemperatureUnitContext from "../context/CurrentTemperatureUnitContext"
+import CurrentTemperatureUnitContext from "../context/CurrentTemperatureUnitContext";
 
 const Main = (props) => {
-  const {currentTemperatureUnit, handleToggleSwitchChange} = useContext(CurrentTemperatureUnitContext);
+  const { currentTemperatureUnit, handleToggleSwitchChange } = useContext(CurrentTemperatureUnitContext);
 
-  const cards = () =>{
-    let items =[]
-    for (let i = 0; i <= props.cardContent.length - 1; i++) {
-      items.push(props.cardContent[i])
-      
-    }
-    return items.map((item) => {
+  const Cards = () => {
+
+    const cardItems = props.cardContent.slice().reverse();
+
+    return cardItems.map((item) => {
       const weatherCategory =
         props.temperature >= 86
           ? "hot"
@@ -38,8 +36,8 @@ const Main = (props) => {
   }
 
   const displayTemperature = currentTemperatureUnit === "C"
-  ? Math.round((props.temperature - 32) * 5 / 9)
-  : props.temperature;
+    ? Math.round((props.temperature - 32) * 5 / 9)
+    : props.temperature;
 
   return (
     <main className="">
@@ -47,7 +45,7 @@ const Main = (props) => {
       <div>
         <h3 className='main__text'>{`Today is ${displayTemperature} ${currentTemperatureUnit} / You may want to wear:`}</h3>
         <div className="profile__section"></div>
-        <ul>{cards()}</ul>
+        <ul>{Cards()}</ul>
       </div>
       <br />
     </main>

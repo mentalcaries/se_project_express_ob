@@ -5,13 +5,10 @@ import ClothesSection from './ClothesSection';
 
 const Profile = (props) => {
 
-  const cards = () => {
-    let items = []
-    for (let i = 0; i <= props.cardContent.length - 1; i++) {
-      items.push(props.cardContent[i])
+  const Cards = () => {
+    const cardItems = props.cardContent.slice().reverse();
 
-    }
-    return items.map((item) => {
+    return cardItems.map((item) => {
       return (
         <ItemCard
           key={item._id}
@@ -29,7 +26,7 @@ const Profile = (props) => {
   return (
     <div className='profile'>
       <SideBar></SideBar>
-      <ClothesSection addButton={props.addButton} cards={cards()}></ClothesSection>
+      <ClothesSection addButton={props.addButton} cards={Cards()}></ClothesSection>
     </div>
   )
 }

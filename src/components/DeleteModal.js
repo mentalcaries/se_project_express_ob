@@ -11,9 +11,7 @@ const DeleteModal = (props) => {
     useEscape(DeleteModal, props.onClose);
 
     const handleDelete = () => {
-        props.executeDelete().then(
-            props.onClose()
-        )
+        props.executeDelete();
     }
     return (
         <div className={`modal ${props.state ? "" : "modal_close"}`} onClick={handleModalClick}>

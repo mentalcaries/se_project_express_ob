@@ -41,7 +41,7 @@
 
 .header__add-button {
     border: 0px;
-
+    cursor: pointer;
 }
 
 .header__text_margin_left {

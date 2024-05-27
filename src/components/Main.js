@@ -8,18 +8,29 @@ import CurrentTemperatureUnitContext from "../context/CurrentTemperatureUnitCont
 const Main = (props) => {
   const { currentTemperatureUnit, handleToggleSwitchChange } = useContext(CurrentTemperatureUnitContext);
 
-  const Cards = () => {
+  const generateCards = () => {
 
     const cardItems = props.cardContent.slice().reverse();
 
     return cardItems.map((item) => {
-      const weatherCategory =
-        props.temperature >= 86
-          ? "hot"
-          : props.temperature >= 66 && props.temperature <= 85
-            ? "warm"
-            : "cold";
-      if (item.weather === weatherCategory) {
+
+      const weatherCategory = (temperature, unit) => {
+        if (unit === "C") {
+          return temperature >= 30
+            ? "hot"
+            : temperature >= 20 && temperature < 30
+              ? "warm"
+              : "cold";
+        } else {
+          // Assuming the unit is "F"
+          return temperature >= 86
+            ? "hot"
+            : temperature >= 66 && temperature <= 85
+              ? "warm"
+              : "cold";
+        }
+      };
+      if (item.weather === weatherCategory(props.temperature, currentTemperatureUnit)) {
         return (
           <ItemCard
             key={item._id}
@@ -45,7 +56,7 @@ const Main = (props) => {
       <div>
         <h3 className='main__text'>{`Today is ${displayTemperature} ${currentTemperatureUnit} / You may want to wear:`}</h3>
         <div className="profile__section"></div>
-        <ul>{Cards()}</ul>
+        <ul>{generateCards()}</ul>
       </div>
       <br />
     </main>

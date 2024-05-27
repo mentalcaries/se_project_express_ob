@@ -44,5 +44,5 @@ const deleteCard = (id) => {
 
 };
 
-export { getCards, addCard, deleteCard };
+export { getCards, addCard, deleteCard, checkResponse };
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import ModalWithForm from './ModalWithForm';
 import CurrentCardsContext from "../context/CardsContext";
-import useEscape from "../utils/useEscape";
+import * as Constants from "../utils/constants"
 
 const AddItemModal = (props) => {
   const { cards, setClothingItems } = useContext(CurrentCardsContext);
@@ -26,8 +26,6 @@ const AddItemModal = (props) => {
     return findArrayDifference(avalableIds, usedIds)[0];
   }
 
-  useEscape(AddItemModal, props.onClose);
-
   useEffect(() => {
     if (props.state === true) {
       setModalData({ _id: findId(cards), "name": NaN, "weather": NaN, "imageUrl": NaN });
@@ -39,7 +37,7 @@ const AddItemModal = (props) => {
   };
 
   const submitFunction = () => {
-    props.apiAdd(modalData).then((results) => {
+    props.apiAdd(modalData).then(() => {
       setClothingItems(prevState => ([
         ...prevState,
         modalData
@@ -51,23 +49,53 @@ const AddItemModal = (props) => {
     });
 
   }
-  const handleKeyDown = (event) => {
-    if (event.key === 'Enter') {
-      event.preventDefault();
-      submitFunction();
-    }
-  }
+
+  const InputComponent = (props) => {
+
+    return (
+      <label className={props.labelClassName}>
+        {props.labelName}
+        <input
+          required={true}
+          className={props.inputClassName}
+          type={props.type}
+          placeholder={props.placeholder}
+          name={props.name}
+          value={props.value}
+          onChange={props.onChange}
+          onClick={props.onclick}
+          id={props.id}
+        ></input>
+      </label>
+    );
+  };
 
   return (
     <ModalWithForm
       submitHandler={submitFunction}
-      onKeyDown={handleKeyDown}
       className={props.className}
       onClose={props.onClose}
       state={props.state}
       title={props.title}
       buttonText={props.buttonText}
       handleInputChange={handleInputChange}
+      modalInputContent={Constants.inputElements.map((item) => {
+        return (
+          <InputComponent
+            key={item.id}
+            labelName={item.labelName}
+            id={item.id}
+            labelClassName={item.labelClassName}
+            inputClassName={item.inputClassName}
+            type={item.type}
+            placeholder={item.placeholder}
+            name={item.name}
+            value={item.value}
+            onChange={(event) => { handleInputChange(event, item.name) }}
+            onClick={(item.onClick)}
+          ></InputComponent>
+        );
+      })}
     >
     </ModalWithForm>
   );

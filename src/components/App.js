@@ -1,6 +1,5 @@
 import "../blocks/App.css";
 import "../index.css";
-import * as Constants from "../utils/constants";
 import React, { useState, useEffect } from "react";
 import { Route, Switch } from 'react-router-dom';
 import Header from "./Header";
@@ -72,8 +71,6 @@ const App = () => {
 
   }
 
-  console.log(cards)
-
   const toggleItemModal = (id, title, link, category) => {
     setItemModal((prevItemModal) => ({
       ...prevItemModal,
@@ -102,7 +99,7 @@ const App = () => {
             executeDelete={() => {
               return deleteCard(itemModal.itemInfo.id).then(() => {
                 removeCardById(itemModal.itemInfo.id)
-              });
+              }).then(closeDeleteModal()).catch(console.error());
             }}
           >
           </DeleteModal>

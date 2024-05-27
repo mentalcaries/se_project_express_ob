@@ -1,6 +1,6 @@
 import React from 'react';
 import * as Constants from "../utils/constants";
-import CurrentTemperatureUnitContext from "../context/CurrentTemperatureUnitContext"
+import CurrentTemperatureUnitContext from "../context/CurrentTemperatureUnitContext.js"
 
 const WeatherCard = (props) => {
 

@@ -8,7 +8,7 @@ const DeleteModal = (props) => {
         }
     };
 
-    useEscape(DeleteModal, props.onClose);
+    useEscape(props.onClose);
 
     const handleDelete = () => {
         props.executeDelete();

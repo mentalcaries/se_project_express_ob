@@ -14,7 +14,7 @@ const ItemModal = (props) => {
     props.onClose();
   }
 
-  useEscape(ItemModal, props.onClose);
+  useEscape(props.onClose);
 
   return (
     <div className={`modal ${props.opened ? "" : "modal_close"}`} onClick={handleModalClick}>

@@ -105,7 +105,7 @@ const App = () => {
           </DeleteModal>
           <AddItemModal
             state={addModal.opened}
-            onClose={() => { closeAddModal() }}
+            onClose={closeAddModal}
             className={`modal modal_type_`}
             title={"New Garement"}
             buttonText={"Add Garement"}

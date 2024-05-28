@@ -79,7 +79,7 @@ const AddItemModal = (props) => {
       title={props.title}
       buttonText={props.buttonText}
       handleInputChange={handleInputChange}
-      modalInputContent={Constants.inputElements.map((item) => {
+      children={Constants.inputElements.map((item) => {
         return (
           <InputComponent
             key={item.id}

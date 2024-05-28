@@ -2,18 +2,17 @@ import React, { useRef } from "react";
 import useEscape from "../utils/useEscape";
 
 const ModalWithForm = (props) => {
-  const modalRef = useRef(null);
-  useEscape(modalRef, props.onClose);
 
   const handleModalClick = (event) => {
     if (event.target === event.currentTarget) {
       props.onClose();
     }
   };
+  useEscape(props.onClose);
 
 
   return (
-    <div className={`modal ${props.state ? "" : "modal_close"}`} ref={modalRef} onClick={handleModalClick}>
+    <div className={`modal ${props.state ? "" : "modal_close"}`} onClick={handleModalClick}>
       <form className="form" onSubmit={(event) => {
         event.preventDefault();
         props.submitHandler();
@@ -28,7 +27,7 @@ const ModalWithForm = (props) => {
 
         <h3>{props.title}</h3>
 
-        {props.modalInputContent}
+        {props.children}
 
         <button className="form__submit-button" type="submit">
           {props.buttonText}

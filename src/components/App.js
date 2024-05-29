@@ -93,6 +93,16 @@ const App = () => {
       <CurrentTemperatureUnitContext.Provider value={{ currentTemperatureUnit, handleToggleSwitchChange }}>
         <CurrentCardsContext.Provider value={{ cards, setClothingItems }}>
 
+          <AddItemModal
+            state={addModal.opened}
+            onClose={closeAddModal}
+            className={`modal modal_type_`}
+            title={"New Garement"}
+            buttonText={"Add Garement"}
+            apiAdd={addCard}
+          >
+          </AddItemModal>
+
           <DeleteModal
             onClose={closeDeleteModal}
             state={deleteModal.opened}
@@ -103,15 +113,6 @@ const App = () => {
             }}
           >
           </DeleteModal>
-          <AddItemModal
-            state={addModal.opened}
-            onClose={closeAddModal}
-            className={`modal modal_type_`}
-            title={"New Garement"}
-            buttonText={"Add Garement"}
-            apiAdd={addCard}
-          >
-          </AddItemModal>
 
           <ItemModal
             onClose={() => {

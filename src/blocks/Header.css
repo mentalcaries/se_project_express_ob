@@ -53,10 +53,6 @@
 }
 
 
-@media only screen and (max-width: 677px) {
-    /* what can i do to highlight the add button  */
-}
-
 @media only screen and (max-width: 570px) {
     .header__section {
         column-gap: 0px;
@@ -76,7 +72,6 @@
 
 .header__switch-checkbox {
     display: none;
-    /* Hide the actual checkbox */
 }
 
 .header__switch-button {

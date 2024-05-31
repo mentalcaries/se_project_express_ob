@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import useEscape from "../utils/useEscape";
 
 const ModalWithForm = (props) => {
@@ -8,8 +8,7 @@ const ModalWithForm = (props) => {
       props.onClose();
     }
   };
-  useEscape(props.onClose);
-
+  useEscape(ModalWithForm, props.onClose);
 
   return (
     <div className={`modal ${props.state ? "" : "modal_close"}`} onClick={handleModalClick}>

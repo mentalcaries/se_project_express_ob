@@ -1,20 +1,18 @@
-import React,{useEffect} from "react";
-export function useEscape(handleClose) {
+import { useEffect } from "react";
 
-        useEffect(() => {
-            const handleEscape = (e) => {
-                if (e.key === "Escape") {
-                    handleClose();
-                    console.log("Escape key pressed");
-                }
-            };
-    
-            document.addEventListener("keydown", handleEscape);
-    
-            return () => {
-                document.removeEventListener("keydown", handleEscape);
-            };
-        }, [handleClose]);
+export default function useEscape(closeModal, closePopup) {
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === "Escape") {
+        closePopup();
+        console.log("escape button clicked")
+      }
+    };
+
+    document.addEventListener("keydown", handleEscape);
+
+    return () => {
+      document.removeEventListener("keydown", handleEscape);
+    };
+  }, [closeModal]);
 }
-
-export default useEscape

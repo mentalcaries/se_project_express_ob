@@ -50,7 +50,7 @@ const defaultClothingItems = [
   },
 ];
 
-const inputElements = [
+const inputElements = [ // better name for this
   {
     id: "name-input",
     labelName: "Name",
@@ -129,4 +129,112 @@ const cardConditions = {
   },
 };
 
-export { defaultClothingItems, longitude, latitude, cardConditions, inputElements };
+const editProfileModal = [
+  {
+    id: "name-input",
+    labelName: "Name",
+    labelClassName: "form__text-label",
+    inputClassName: "form__text-input",
+    type: "text",
+    placeholder: "Name",
+    name: "name",
+    required: false,
+    onChange: () => { },
+    onClick: () => { },
+  },
+  {
+    id: "avatar-input",
+    labelName: "Avatar",
+    labelClassName: "form__text-label",
+    inputClassName: "form__text-input",
+    type: "url",
+    placeholder: "Avatar",
+    name: "avatar",
+    required: false,
+    onChange: () => { },
+    onClick: () => { },
+  }
+
+]
+
+const loginInputComponents = [
+  {
+    id: "email-input",
+    labelName: "Email",
+    labelClassName: "form__text-label",
+    inputClassName: "form__text-input",
+    type: "email",
+    placeholder: "Enter Email",
+    name: "Email",
+    onChange: () => { },
+    onClick: () => { },
+  },
+  {
+    id: "password-input",
+    labelName: "Password",
+    labelClassName: "form__text-label",
+    inputClassName: "form__text-input",
+    type: "text",
+    placeholder: "Enter password",
+    name: "Password",
+    onChange: () => { },
+    onClick: () => { },
+  }
+  
+]
+const registerInputComponents = [
+  {
+    id: "email-input",
+    labelName: "Email",
+    labelClassName: "form__text-label",
+    inputClassName: "form__text-input",
+    type: "email",
+    placeholder: "Email",
+    name: "Email",
+    required: true,
+    onChange: () => { },
+    onClick: () => { },
+  },
+  {
+    id: "password-input",
+    labelName: "Password",
+    labelClassName: "form__text-label",
+    inputClassName: "form__text-input",
+    type: "text",
+    placeholder: "Password",
+    name: "Password",
+    required: true,
+    onChange: () => { },
+    onClick: () => { },
+  },
+  {
+    id: "name-input",
+    labelName: "Name",
+    labelClassName: "form__text-label",
+    inputClassName: "form__text-input",
+    type: "text",
+    placeholder: "Name",
+    name: "Name",
+    required: false,
+    onChange: () => { },
+    onClick: () => { },
+  },
+  {
+    id: "avatar-input",
+    labelName: "Avatar",
+    labelClassName: "form__text-label",
+    inputClassName: "form__text-input",
+    type: "url",
+    placeholder: "Avatar",
+    name: "Avatar",
+    required: false,
+    onChange: () => { },
+    onClick: () => { },
+  },
+  
+]
+
+
+export { defaultClothingItems, longitude, latitude, cardConditions, inputElements, loginInputComponents,
+  registerInputComponents, editProfileModal
+ };

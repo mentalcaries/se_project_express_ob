@@ -44,6 +44,12 @@
     cursor: pointer;
 }
 
+.header__registerUser{
+    border: 0px;
+    cursor: pointer;
+    background-color: transparent;
+}
+
 .header__text_margin_left {
     margin-left: 30px;
 }
@@ -52,6 +58,47 @@
     margin-left: 30px
 }
 
+.header__profile-image{
+    height: 36px;
+    width: 36px;
+    border-radius: 50%;
+}
+
+.header__default-image {
+    width: 40px;
+    height: 40px;
+    position: relative;
+  }
+  
+  .header__outer-circle {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: #CCCCCC;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+  }
+  
+  .header__inner-circle {
+    width: 27px;
+    height: 27px;
+    border-radius: 50%;
+    background-color: #AAAAAA;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .header__inner-circle span {
+    font-size: 18px;
+    font-family: Arial;
+    color: #333333;
+  }
 
 @media only screen and (max-width: 570px) {
     .header__section {

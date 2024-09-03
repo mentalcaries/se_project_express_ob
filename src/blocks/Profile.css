@@ -9,6 +9,7 @@
 .profile__logo{
     height: 40px;
     width: 40px;
+    border-radius: 50%;
 }
 
 .profile__avatar{
@@ -29,6 +30,8 @@
     justify-content: flex-start;
     margin: 0px;
     margin-left: 15px;
+    font-size: 20px;
+    font-weight: 700;
 }
 
 .profile__items{

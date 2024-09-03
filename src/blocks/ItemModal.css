@@ -36,6 +36,10 @@
     cursor: pointer;
 }
 
+.modal__delete-button_invisable{
+    visibility: hidden;
+}
+
 .modal__sub-container{
     margin-top: 30px;
 }

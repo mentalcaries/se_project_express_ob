@@ -13,7 +13,6 @@ const Main = (props) => {
     const cardItems = props.cardContent.slice().reverse();
 
     return cardItems.map((item) => {
-
       const weatherCategory = (temperature, unit) => {
         if (unit === "C") {
           return temperature >= 30
@@ -22,7 +21,6 @@ const Main = (props) => {
               ? "warm"
               : "cold";
         } else {
-          // Assuming the unit is "F"
           return temperature >= 86
             ? "hot"
             : temperature >= 66 && temperature <= 85
@@ -33,12 +31,14 @@ const Main = (props) => {
       if (item.weather === weatherCategory(props.temperature, currentTemperatureUnit)) {
         return (
           <ItemCard
-            key={item._id}
+            id={item._id}
             name={item.name}
             weather={item.weather}
             imageUrl={item.imageUrl}
-            handleClick={(x, y, z) => {
-              props.toggleItemModal(item._id, x, y, z);
+            likes={item.likes}
+            onCardLike={props.onCardLike}
+            handleClick={(x, y, z) => { // better naming 
+              props.toggleItemModal(item._id, x, y, z, item.owner);
             }}
           ></ItemCard>
         );

@@ -28,7 +28,7 @@ const AddItemModal = (props) => {
 
   useEffect(() => {
     if (props.state === true) {
-      setModalData({ _id: findId(cards), "name": NaN, "weather": NaN, "imageUrl": NaN });
+      setModalData({ _id: findId(cards), "name": NaN, "weather": NaN, "imageUrl": NaN, "likes":[] });
     }
   }, [props.state]);
 
@@ -37,7 +37,8 @@ const AddItemModal = (props) => {
   };
 
   const submitFunction = () => {
-    props.apiAdd(modalData).then(() => {
+    props.apiAdd(modalData, props.auth).then((response) => {
+      modalData.owner = response.owner;
       setClothingItems(prevState => ([
         ...prevState,
         modalData
@@ -79,6 +80,7 @@ const AddItemModal = (props) => {
       title={props.title}
       buttonText={props.buttonText}
       handleInputChange={handleInputChange}
+      hideLoginButton={props.hideLoginButton}
       children={Constants.inputElements.map((item) => {
         return (
           <InputComponent

@@ -5,7 +5,6 @@ export default function useEscape(closeModal, closePopup) {
     const handleEscape = (e) => {
       if (e.key === "Escape") {
         closePopup();
-        console.log("escape button clicked")
       }
     };
 

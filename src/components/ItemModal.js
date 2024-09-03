@@ -1,7 +1,10 @@
-import React from "react";
-import useEscape from "../utils/useEscape";
+import React, { useContext, useEffect } from 'react';
+import useEscape from "../utils/useEscape"; // why does this work across multiple modals
+import CurrentUserContext from '../context/CurrentUserContext';
 
 const ItemModal = (props) => {
+
+  const currentUser = useContext(CurrentUserContext);
 
   const handleModalClick = (event) => {
     if (event.target === event.currentTarget) {
@@ -13,6 +16,8 @@ const ItemModal = (props) => {
     props.handleDelete();
     props.onClose();
   }
+
+  const isOwned = props.itemOwner != currentUser._id
 
   useEscape(ItemModal, props.onClose);
 
@@ -31,10 +36,12 @@ const ItemModal = (props) => {
         <div className="modal__sub-container">
           <div className="modal__text-header">
             <h3 className="modal__text">{props.itemName}</h3>
-            <button className="modal__delete-button"
+            <button className={`modal__delete-button ${(isOwned)?
+              "modal__delete-button_invisable":""
+            }`}
               onClick={handleDelete}
               id={props.itemId}
-            >Delete Item</button>
+            >Delete Item</button>   
           </div>
           <h3 className="modal__text">{`Weather: ${props.itemCategory}`}</h3>
         </div>

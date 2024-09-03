@@ -8,6 +8,7 @@
 @import url('./blocks/ItemModal.css');
 @import url('./blocks/Profile.css');
 @import url('./blocks/DeleteModal.css');
+@import url('./blocks/SideBar.css');
 
 body {
   margin: 0;

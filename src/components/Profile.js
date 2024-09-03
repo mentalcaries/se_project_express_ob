@@ -11,12 +11,15 @@ const Profile = (props) => {
     return cardItems.map((item) => {
       return (
         <ItemCard
+          id={item._id}
           key={item._id}
           name={item.name}
           weather={item.weather}
           imageUrl={item.imageUrl}
-          handleClick={(x, y, z) => {
-            props.toggleItemModal(item._id, x, y, z);
+          likes={item.likes}
+          onCardLike={props.onCardLike}
+          handleClick={(x, y, z) => { // better naming 
+            props.toggleItemModal(item._id, x, y, z, item.owner);
           }}
         ></ItemCard>
       );
@@ -25,7 +28,10 @@ const Profile = (props) => {
 
   return (
     <div className='profile'>
-      <SideBar></SideBar>
+      <SideBar
+      openEditModal={props.openEditModal}
+      logOut={props.logOut}
+      ></SideBar>
       <ClothesSection addButton={props.addButton} cards={Cards()}></ClothesSection>
     </div>
   )

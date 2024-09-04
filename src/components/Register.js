@@ -19,6 +19,8 @@ const RegisterModal = (props) => {
             registerLabels.Avatar
         ).then(
             (res) => {
+                console.log(res);
+                props.setCurrentUser(res);
                 props.onClose();
             }
         )

@@ -204,6 +204,7 @@ const App = () => {
               openLogin={openLoginModal}
               alternateButtonText={"Or Login"}
               registerUser={registerUser}
+              setCurrentUser={setCurrentUser}
             >
 
             </RegisterModal>

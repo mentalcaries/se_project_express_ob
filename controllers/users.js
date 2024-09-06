@@ -8,7 +8,6 @@ const errorHandler = require("../utils/error");
 
 const createUser = async (req, res) => {
   const { email, password, name, avatar } = req.body;
-  // console.log({ email, password, name, avatar })
   try {
     const existingUser = await user.findOne({ email });
     if (existingUser) {
@@ -23,7 +22,6 @@ const createUser = async (req, res) => {
 
     return res.status(201).send(userObject);
   } catch (error) {
-    // console.log(error);
     return errorHandler(error, res);
   }
 };

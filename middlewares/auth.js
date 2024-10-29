@@ -1,25 +1,24 @@
 
 const jwt = require('jsonwebtoken');
-
-const errorHandler = require('../utils/error');
+const { handleErrors } = require('../utils/error'); // Adjust the import
 
 const verifyToken = (req, res, next) => {
-  const { authorization } = req.headers
+  const { authorization } = req.headers;
   if (!authorization) {
-    return errorHandler(new Error("Unauthorized"), res)
+    return handleErrors(new Error("Unauthorized"), res); // Call handleErrors
   }
+  
   const token = authorization.replace('Bearer ', '');
   jwt.verify(token, 'Testing2024', (error, decoded) => {
     if (error) {
-      return errorHandler(new Error("Unauthorized"), res);
+      return handleErrors(new Error("Unauthorized"), res); // Call handleErrors
     }
+    
     req.user = decoded;
     next();
   });
-}
+};
 
-module.exports = { verifyToken }
-
-
+module.exports = { verifyToken };
 
 

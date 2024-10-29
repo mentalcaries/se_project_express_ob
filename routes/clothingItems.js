@@ -5,13 +5,21 @@ const clothesRouter = express.Router();
 const { getClothes, addClothes, getClothingItem, deleteClothingItem, likeImage, unlikeImage } =
   require('../controllers/clothingItems');
 
+const {
+  validateClothingItem,
+  validateUserInfo,
+  validateUserLogin,
+  validateId,
+} = require('../middlewares/validation');  // Assuming this is the file where your validators are stored
+
+
 const { verifyToken } = require('../middlewares/auth');
 
 clothesRouter.get('/items', getClothes);
 
 clothesRouter.get('/items/:itemId', verifyToken, getClothingItem);
 
-clothesRouter.post('/items', verifyToken, addClothes);
+clothesRouter.post('/items', validateClothingItem, verifyToken, addClothes);
 
 clothesRouter.put('/items/:itemId/likes', verifyToken, likeImage);
 

@@ -1,33 +1,52 @@
 const clothes = require('../models/clothingItems');
-
 const errorHandler = require('../utils/error');
 
-const getClothes = (req, res) => {
-  clothes.find({})
-    .then(items => res.status(200).send(items))
-    .catch(error => errorHandler(error, res));
+const getClothes = async (req, res) => {
+  try {
+    const items = await clothes.find({});
+    res.status(200).send(items);
+  } catch (error) {
+    if (error.name === "CastError") {
+      next(new errorHandler.BadRequestError("The id string is in an invalid format"));
+    } else {
+      next(error);
+    }  }
 };
 
-const addClothes = (req, res) => {
+const addClothes = async (req, res, next) => {
   const { name, weather, imageUrl } = req.body;
-  clothes.create({
-    name,
-    weather,
-    imageUrl,
-    owner: req.user._id,
-  })
-    .then(newItem => res.status(201).send(newItem))
-    .catch(error => errorHandler(error, res));
+  try {
+    const newItem = await clothes.create({
+      name,
+      weather,
+      imageUrl,
+      owner: req.user._id,
+    });
+    res.status(201).send(newItem);
+  } catch (error) {
+    if (error.name === "CastError") {
+      next(new errorHandler.BadRequestError("The id string is in an invalid format"));
+    } else {
+      next(error);
+    }
+  }
 };
 
-const getClothingItem = (req, res) => {
+const getClothingItem = async (req, res, next) => {
   const { itemId } = req.params;
-  clothes.findById(itemId)
-    .orFail()
-    .then(item => res.status(200).send(item))
-    .catch(error => errorHandler(error, res));
+  try {
+    const item = await clothes.findById(itemId).orFail();
+    res.status(200).send(item);
+  } catch (error) {
+    if (error.name === "CastError") {
+      next(new errorHandler.BadRequestError("The id string is in an invalid format"));
+    } else {
+      next(error);
+    }
+  }
 };
-const deleteClothingItem = async (req, res) => {
+
+const deleteClothingItem = async (req, res, next) => {
   const { itemId } = req.params;
   try {
     const item = await clothes.findById(itemId).orFail();
@@ -39,34 +58,48 @@ const deleteClothingItem = async (req, res) => {
       throw new Error('Forbidden');
     }
   } catch (error) {
-    errorHandler(error, res);
+    if (error.name === "CastError") {
+      next(new errorHandler.BadRequestError("The id string is in an invalid format"));
+    } else {
+      next(error);
+    }
   }
 };
 
-const likeImage = (req, res) => {
+const likeImage = async (req, res, next) => {
   const { itemId } = req.params;
-
-  clothes.findByIdAndUpdate(
-    itemId,
-    { $addToSet: { likes: req.user._id } },
-    { new: true, runValidators: true }
-  )
-    .orFail()
-    .then(updatedClothes => res.status(200).send(updatedClothes))
-    .catch(error => errorHandler(error, res));
+  try {
+    const updatedClothes = await clothes.findByIdAndUpdate(
+      itemId,
+      { $addToSet: { likes: req.user._id } },
+      { new: true, runValidators: true }
+    ).orFail();
+    res.status(200).send(updatedClothes);
+  } catch (error) {
+    if (error.name === "CastError") {
+      next(new errorHandler.BadRequestError("The id string is in an invalid format"));
+    } else {
+      next(error);
+    }
+  }
 };
 
-const unlikeImage = (req, res) => {
+const unlikeImage = async (req, res, next) => {
   const { itemId } = req.params;
-
-  clothes.findByIdAndUpdate(
-    itemId,
-    { $pull: { likes: req.user._id } },
-    { new: true, runValidators: true }
-  )
-    .orFail()
-    .then(updatedClothes => res.status(200).send(updatedClothes))
-    .catch(error => errorHandler(error, res));
+  try {
+    const updatedClothes = await clothes.findByIdAndUpdate(
+      itemId,
+      { $pull: { likes: req.user._id } },
+      { new: true, runValidators: true }
+    ).orFail();
+    res.status(200).send(updatedClothes);
+  } catch (error) {
+    if (error.name === "CastError") {
+      next(new errorHandler.BadRequestError("The id string is in an invalid format"));
+    } else {
+      next(error);
+    }
+  }
 };
 
 module.exports = {

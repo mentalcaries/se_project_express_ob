@@ -4,11 +4,18 @@ const { verifyToken } = require('../middlewares/auth');
 
 const { createUser, getUser, login, updateProfile } = require('../controllers/users');
 
+const {
+    validateClothingItem,
+    validateUserInfo,
+    validateUserLogin,
+    validateId,
+  } = require('../middlewares/validation');  // Assuming this is the file where your validators are stored
+
 const usersRouter = express.Router();
 
-usersRouter.post('/signup', createUser);
+usersRouter.post('/signup',validateUserInfo, createUser);
 
-usersRouter.post('/signin', login)
+usersRouter.post('/signin',validateUserLogin, login);
 
 usersRouter.get('/users/me', verifyToken, getUser);
 
